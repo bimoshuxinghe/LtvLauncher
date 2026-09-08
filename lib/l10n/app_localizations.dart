@@ -1024,6 +1024,276 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Install Breezy Weather and enable \'Local data sharing\' / \'Gadgetbridge\' in its settings to see weather and rain warnings.'**
   String get breezyWeatherSetupHint;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @addToCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Category'**
+  String get addToCategory;
+
+  /// No description provided for @setCustomBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Custom Banner'**
+  String get setCustomBanner;
+
+  /// No description provided for @clearCustomBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Custom Banner'**
+  String get clearCustomBanner;
+
+  /// No description provided for @setBannerFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to set banner: {error}'**
+  String setBannerFailed(String error);
+
+  /// No description provided for @clearBannerFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to clear banner: {error}'**
+  String clearBannerFailed(String error);
+
+  /// No description provided for @grantUsagePermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Grant Usage Permission'**
+  String get grantUsagePermission;
+
+  /// No description provided for @accessibilityPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Accessibility Permission'**
+  String get accessibilityPermission;
+
+  /// No description provided for @shareFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Failed'**
+  String get shareFailed;
+
+  /// No description provided for @shareBackupFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to share backup: {error}'**
+  String shareBackupFailed(String error);
+
+  /// No description provided for @exportSuccessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Success'**
+  String get exportSuccessTitle;
+
+  /// No description provided for @exportFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Failed'**
+  String get exportFailedTitle;
+
+  /// No description provided for @noBackupFilesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No backup files found.'**
+  String get noBackupFilesFound;
+
+  /// No description provided for @importFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Import Failed'**
+  String get importFailed;
+
+  /// No description provided for @brightnessAdbPermissionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'To control brightness on this device, you must grant permission via ADB:'**
+  String get brightnessAdbPermissionHint;
+
+  /// No description provided for @grantPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Grant Permission'**
+  String get grantPermission;
+
+  /// No description provided for @checkStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Check Status'**
+  String get checkStatus;
+
+  /// No description provided for @overlayPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Overlay Permission'**
+  String get overlayPermission;
+
+  /// No description provided for @customName.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Name'**
+  String get customName;
+
+  /// No description provided for @lastUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Used'**
+  String get lastUsed;
+
+  /// No description provided for @clearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear All'**
+  String get clearAll;
+
+  /// No description provided for @dismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismiss'**
+  String get dismiss;
+
+  /// No description provided for @errorLoadingBackups.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading backups: {error}'**
+  String errorLoadingBackups(String error);
+
+  /// No description provided for @addToFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Fav'**
+  String get addToFavorites;
+
+  /// No description provided for @removeFromFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Fav'**
+  String get removeFromFavorites;
+
+  /// No description provided for @selectedAccent.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected Accent'**
+  String get selectedAccent;
+
+  /// No description provided for @accessibilityPermissionGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'On this device, the Accessibility settings screen could not be opened automatically.\n\nTo enable Home Button Fix, you can grant permission manually by running this ADB command from a computer connected to the TV:'**
+  String get accessibilityPermissionGuide;
+
+  /// No description provided for @enableScheduler.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Scheduler'**
+  String get enableScheduler;
+
+  /// No description provided for @brightnessExperimentalNote.
+  ///
+  /// In en, this message translates to:
+  /// **'EXPERIMENTAL: This feature is untested and may be removed in future versions based on user feedback.'**
+  String get brightnessExperimentalNote;
+
+  /// No description provided for @brightnessSupportNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: Some Android TV devices may not support app-level brightness control.'**
+  String get brightnessSupportNote;
+
+  /// No description provided for @developedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Developed by LeanBitLab'**
+  String get developedBy;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @sponsorProject.
+  ///
+  /// In en, this message translates to:
+  /// **'Sponsor Project'**
+  String get sponsorProject;
+
+  /// No description provided for @sourceCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Source Code'**
+  String get sourceCode;
+
+  /// No description provided for @notificationAccessGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'On this device, the Notification Access settings screen could not be opened automatically.\n\nTo enable notifications, you can grant permission manually by running this ADB command from a computer connected to the TV:'**
+  String get notificationAccessGuide;
+
+  /// No description provided for @overlayPermissionGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'On this device, the Overlay Permission settings screen could not be opened automatically.\n\nTo enable overlay popups, you can grant permission manually by running this ADB command from a computer connected to the TV:'**
+  String get overlayPermissionGuide;
+
+  /// No description provided for @noInputsDetected.
+  ///
+  /// In en, this message translates to:
+  /// **'No inputs detected'**
+  String get noInputsDetected;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @allCaughtUp.
+  ///
+  /// In en, this message translates to:
+  /// **'All caught up!'**
+  String get allCaughtUp;
+
+  /// No description provided for @continueWatchingAdbHint.
+  ///
+  /// In en, this message translates to:
+  /// **'ADB grant required for Continue Watching:'**
+  String get continueWatchingAdbHint;
+
+  /// No description provided for @dataUsageWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly: '**
+  String get dataUsageWeekly;
+
+  /// No description provided for @dataUsageMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly: '**
+  String get dataUsageMonthly;
+
+  /// No description provided for @dataUsageDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily: '**
+  String get dataUsageDaily;
+
+  /// No description provided for @currentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current: {value}'**
+  String currentLabel(String value);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

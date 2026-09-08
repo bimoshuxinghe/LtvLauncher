@@ -476,4 +476,149 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get breezyWeatherSetupHint => 'Install Breezy Weather and enable \'Local data sharing\' / \'Gadgetbridge\' in its settings to see weather and rain warnings.';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get addToCategory => 'Add to Category';
+
+  @override
+  String get setCustomBanner => 'Set Custom Banner';
+
+  @override
+  String get clearCustomBanner => 'Clear Custom Banner';
+
+  @override
+  String setBannerFailed(String error) {
+    return 'Failed to set banner: $error';
+  }
+
+  @override
+  String clearBannerFailed(String error) {
+    return 'Failed to clear banner: $error';
+  }
+
+  @override
+  String get grantUsagePermission => 'Grant Usage Permission';
+
+  @override
+  String get accessibilityPermission => 'Accessibility Permission';
+
+  @override
+  String get shareFailed => 'Share Failed';
+
+  @override
+  String shareBackupFailed(String error) {
+    return 'Failed to share backup: $error';
+  }
+
+  @override
+  String get exportSuccessTitle => 'Export Success';
+
+  @override
+  String get exportFailedTitle => 'Export Failed';
+
+  @override
+  String get noBackupFilesFound => 'No backup files found.';
+
+  @override
+  String get importFailed => 'Import Failed';
+
+  @override
+  String get brightnessAdbPermissionHint => 'To control brightness on this device, you must grant permission via ADB:';
+
+  @override
+  String get grantPermission => 'Grant Permission';
+
+  @override
+  String get checkStatus => 'Check Status';
+
+  @override
+  String get overlayPermission => 'Overlay Permission';
+
+  @override
+  String get customName => 'Custom Name';
+
+  @override
+  String get lastUsed => 'Last Used';
+
+  @override
+  String get clearAll => 'Clear All';
+
+  @override
+  String get dismiss => 'Dismiss';
+
+  @override
+  String errorLoadingBackups(String error) {
+    return 'Error loading backups: $error';
+  }
+
+  @override
+  String get addToFavorites => 'Add to Fav';
+
+  @override
+  String get removeFromFavorites => 'Remove from Fav';
+
+  @override
+  String get selectedAccent => 'Selected Accent';
+
+  @override
+  String get accessibilityPermissionGuide => 'On this device, the Accessibility settings screen could not be opened automatically.\n\nTo enable Home Button Fix, you can grant permission manually by running this ADB command from a computer connected to the TV:';
+
+  @override
+  String get enableScheduler => 'Enable Scheduler';
+
+  @override
+  String get brightnessExperimentalNote => 'EXPERIMENTAL: This feature is untested and may be removed in future versions based on user feedback.';
+
+  @override
+  String get brightnessSupportNote => 'Note: Some Android TV devices may not support app-level brightness control.';
+
+  @override
+  String get developedBy => 'Developed by LeanBitLab';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get sponsorProject => 'Sponsor Project';
+
+  @override
+  String get sourceCode => 'Source Code';
+
+  @override
+  String get notificationAccessGuide => 'On this device, the Notification Access settings screen could not be opened automatically.\n\nTo enable notifications, you can grant permission manually by running this ADB command from a computer connected to the TV:';
+
+  @override
+  String get overlayPermissionGuide => 'On this device, the Overlay Permission settings screen could not be opened automatically.\n\nTo enable overlay popups, you can grant permission manually by running this ADB command from a computer connected to the TV:';
+
+  @override
+  String get noInputsDetected => 'No inputs detected';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get allCaughtUp => 'All caught up!';
+
+  @override
+  String get continueWatchingAdbHint => 'ADB grant required for Continue Watching:';
+
+  @override
+  String get dataUsageWeekly => 'Weekly: ';
+
+  @override
+  String get dataUsageMonthly => 'Monthly: ';
+
+  @override
+  String get dataUsageDaily => 'Daily: ';
+
+  @override
+  String currentLabel(String value) {
+    return 'Current: $value';
+  }
 }

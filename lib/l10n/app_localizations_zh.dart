@@ -31,7 +31,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get applications => '应用';
 
   @override
-  String get autoHideAppBar => '自动隐藏状态栏';
+  String get autoHideAppBar => '自动隐藏顶栏';
 
   @override
   String get backButtonAction => '返回键行为';
@@ -475,5 +475,150 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fahrenheit => '华氏度 (°F)';
 
   @override
-  String get breezyWeatherSetupHint => '安装 Breezy Weather 并在其设置中开启“本地数据共享”/“Gadgetbridge”以显示天气和降雨预警。';
+  String get breezyWeatherSetupHint => '安装 Breezy Weather 并在其设置中开启「本地数据共享」/「Gadgetbridge」以显示天气和降雨预警。';
+
+  @override
+  String get ok => '确定';
+
+  @override
+  String get cancel => '取消';
+
+  @override
+  String get addToCategory => '添加到类别';
+
+  @override
+  String get setCustomBanner => '设置自定义横幅';
+
+  @override
+  String get clearCustomBanner => '清除自定义横幅';
+
+  @override
+  String setBannerFailed(String error) {
+    return '设置横幅失败：$error';
+  }
+
+  @override
+  String clearBannerFailed(String error) {
+    return '清除横幅失败：$error';
+  }
+
+  @override
+  String get grantUsagePermission => '授予用量访问权限';
+
+  @override
+  String get accessibilityPermission => '无障碍权限';
+
+  @override
+  String get shareFailed => '分享失败';
+
+  @override
+  String shareBackupFailed(String error) {
+    return '分享备份失败：$error';
+  }
+
+  @override
+  String get exportSuccessTitle => '导出成功';
+
+  @override
+  String get exportFailedTitle => '导出失败';
+
+  @override
+  String get noBackupFilesFound => '未找到备份文件。';
+
+  @override
+  String get importFailed => '导入失败';
+
+  @override
+  String get brightnessAdbPermissionHint => '要在该设备上调节亮度，必须通过 ADB 授予权限：';
+
+  @override
+  String get grantPermission => '授予权限';
+
+  @override
+  String get checkStatus => '检查状态';
+
+  @override
+  String get overlayPermission => '悬浮窗权限';
+
+  @override
+  String get customName => '自定义名称';
+
+  @override
+  String get lastUsed => '最近使用';
+
+  @override
+  String get clearAll => '全部清除';
+
+  @override
+  String get dismiss => '忽略';
+
+  @override
+  String errorLoadingBackups(String error) {
+    return '加载备份失败：$error';
+  }
+
+  @override
+  String get addToFavorites => '添加到收藏';
+
+  @override
+  String get removeFromFavorites => '从收藏移除';
+
+  @override
+  String get selectedAccent => '已选强调色';
+
+  @override
+  String get accessibilityPermissionGuide => '无法在此设备上自动打开无障碍设置界面。\n\n如需启用 Home 键修复，可在连接到电视的电脑上执行以下 ADB 命令手动授予权限：';
+
+  @override
+  String get enableScheduler => '启用定时';
+
+  @override
+  String get brightnessExperimentalNote => '实验性功能：该功能尚未经过充分测试，后续可能会根据用户反馈移除。';
+
+  @override
+  String get brightnessSupportNote => '注意：部分 Android TV 设备可能不支持应用级亮度调节。';
+
+  @override
+  String get developedBy => '由 LeanBitLab 开发';
+
+  @override
+  String get close => '关闭';
+
+  @override
+  String get sponsorProject => '赞助项目';
+
+  @override
+  String get sourceCode => '源代码';
+
+  @override
+  String get notificationAccessGuide => '无法在此设备上自动打开通知访问权限设置界面。\n\n如需启用通知功能，可在连接到电视的电脑上执行以下 ADB 命令手动授予权限：';
+
+  @override
+  String get overlayPermissionGuide => '无法在此设备上自动打开悬浮窗权限设置界面。\n\n如需启用悬浮窗提醒，可在连接到电视的电脑上执行以下 ADB 命令手动授予权限：';
+
+  @override
+  String get noInputsDetected => '未检测到输入源';
+
+  @override
+  String get notifications => '通知';
+
+  @override
+  String get allCaughtUp => '暂无新通知';
+
+  @override
+  String get continueWatchingAdbHint => '「继续观看」需要通过 ADB 授权：';
+
+  @override
+  String get dataUsageWeekly => '本周：';
+
+  @override
+  String get dataUsageMonthly => '本月：';
+
+  @override
+  String get dataUsageDaily => '今日：';
+
+  @override
+  String currentLabel(String value) {
+    return '当前：$value';
+  }
 }

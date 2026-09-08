@@ -150,8 +150,8 @@ class BackupRestorePage extends StatelessWidget {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 24.0),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
                         child: Text(localizations.noBackupFilesFound),
                       ),
                       TextButton(
