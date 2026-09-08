@@ -30,14 +30,14 @@ class ContinueWatchingRow extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: Colors.redAccent.withOpacity(0.4)),
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  Icon(Icons.warning_amber_rounded, color: Colors.redAccent, size: 20),
-                  SizedBox(width: 8),
+                  const Icon(Icons.warning_amber_rounded, color: Colors.redAccent, size: 20),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'ADB grant required for Continue Watching: adb shell pm grant com.leanbitlab.ltvL com.android.providers.tv.permission.READ_WRITE_WATCH_NEXT_PROGRAMS',
-                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                      '\${AppLocalizations.of(context)!.continueWatchingAdbHint} adb shell pm grant com.leanbitlab.ltvL com.android.providers.tv.permission.READ_WRITE_WATCH_NEXT_PROGRAMS',
+                      style: const TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ),
                 ],

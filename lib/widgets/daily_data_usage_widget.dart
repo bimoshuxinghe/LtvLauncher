@@ -1,3 +1,4 @@
+import 'package:flauncher/l10n/app_localizations.dart';
 import 'package:flauncher/providers/network_service.dart';
 import 'package:flauncher/providers/settings_service.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class DailyDataUsageWidget extends StatelessWidget {
         if (!networkService.hasUsageStatsPermission) {
           return TextButton.icon(
              icon: const Icon(Icons.data_usage, size: 20),
-             label: const Text("Grant Usage Permission"),
+             label: Text(AppLocalizations.of(context)!.grantUsagePermission),
              onPressed: () => networkService.requestPermission(),
           );
         }
@@ -23,14 +24,14 @@ class DailyDataUsageWidget extends StatelessWidget {
         String label;
         switch (period) {
           case 'weekly':
-            label = 'Weekly: ';
+            label = AppLocalizations.of(context)!.dataUsageWeekly;
             break;
           case 'monthly':
-            label = 'Monthly: ';
+            label = AppLocalizations.of(context)!.dataUsageMonthly;
             break;
           case 'daily':
           default:
-            label = 'Daily: ';
+            label = AppLocalizations.of(context)!.dataUsageDaily;
             break;
         }
 

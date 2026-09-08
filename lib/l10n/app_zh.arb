@@ -7,7 +7,7 @@
     "appInfo": "应用信息",
     "appKeyClick": "按键提示音",
     "applications": "应用",
-    "autoHideAppBar": "自动隐藏状态栏",
+    "autoHideAppBar": "自动隐藏顶栏",
     "backButtonAction": "返回键行为",
     "category": "类别",
     "categories": "类别",
@@ -212,5 +212,85 @@
     "temperatureUnit": "温度单位",
     "celsius": "摄氏度 (°C)",
     "fahrenheit": "华氏度 (°F)",
-    "breezyWeatherSetupHint": "安装 Breezy Weather 并在其设置中开启“本地数据共享”/“Gadgetbridge”以显示天气和降雨预警。"
+    "breezyWeatherSetupHint": "安装 Breezy Weather 并在其设置中开启「本地数据共享」/「Gadgetbridge」以显示天气和降雨预警。",
+    "ok": "确定",
+    "cancel": "取消",
+    "addToCategory": "添加到类别",
+    "setCustomBanner": "设置自定义横幅",
+    "clearCustomBanner": "清除自定义横幅",
+    "setBannerFailed": "设置横幅失败：{error}",
+    "@setBannerFailed": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "clearBannerFailed": "清除横幅失败：{error}",
+    "@clearBannerFailed": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "grantUsagePermission": "授予用量访问权限",
+    "accessibilityPermission": "无障碍权限",
+    "shareFailed": "分享失败",
+    "shareBackupFailed": "分享备份失败：{error}",
+    "@shareBackupFailed": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "exportSuccessTitle": "导出成功",
+    "exportFailedTitle": "导出失败",
+    "noBackupFilesFound": "未找到备份文件。",
+    "importFailed": "导入失败",
+    "brightnessAdbPermissionHint": "要在该设备上调节亮度，必须通过 ADB 授予权限：",
+    "grantPermission": "授予权限",
+    "checkStatus": "检查状态",
+    "overlayPermission": "悬浮窗权限",
+    "customName": "自定义名称",
+    "lastUsed": "最近使用",
+    "clearAll": "全部清除",
+    "dismiss": "忽略",
+    "errorLoadingBackups": "加载备份失败：{error}",
+    "@errorLoadingBackups": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "addToFavorites": "添加到收藏",
+    "removeFromFavorites": "从收藏移除",
+    "selectedAccent": "已选强调色",
+    "accessibilityPermissionGuide": "无法在此设备上自动打开无障碍设置界面。\n\n如需启用 Home 键修复，可在连接到电视的电脑上执行以下 ADB 命令手动授予权限：",
+    "enableScheduler": "启用定时",
+    "brightnessExperimentalNote": "实验性功能：该功能尚未经过充分测试，后续可能会根据用户反馈移除。",
+    "brightnessSupportNote": "注意：部分 Android TV 设备可能不支持应用级亮度调节。",
+    "developedBy": "由 LeanBitLab 开发",
+    "close": "关闭",
+    "sponsorProject": "赞助项目",
+    "sourceCode": "源代码",
+    "notificationAccessGuide": "无法在此设备上自动打开通知访问权限设置界面。\n\n如需启用通知功能，可在连接到电视的电脑上执行以下 ADB 命令手动授予权限：",
+    "overlayPermissionGuide": "无法在此设备上自动打开悬浮窗权限设置界面。\n\n如需启用悬浮窗提醒，可在连接到电视的电脑上执行以下 ADB 命令手动授予权限：",
+    "noInputsDetected": "未检测到输入源",
+    "notifications": "通知",
+    "allCaughtUp": "暂无新通知",
+    "continueWatchingAdbHint": "「继续观看」需要通过 ADB 授权：",
+    "dataUsageWeekly": "本周：",
+    "dataUsageMonthly": "本月：",
+    "dataUsageDaily": "今日：",
+    "currentLabel": "当前：{value}",
+    "@currentLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    }
 }

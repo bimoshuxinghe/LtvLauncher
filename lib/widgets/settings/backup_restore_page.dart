@@ -58,12 +58,12 @@ class BackupRestorePage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text("Share Failed"),
-            content: Text("Failed to share backup: $e"),
+            title: Text(localizations.shareFailed),
+            content: Text(localizations.shareBackupFailed(e.toString())),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text("OK"),
+                child: Text(localizations.ok),
               ),
             ],
           ),
@@ -80,12 +80,12 @@ class BackupRestorePage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text("Export Success"),
+            title: Text(localizations.exportSuccessTitle),
             content: Text(localizations.exportSuccess(path)),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text("OK"),
+                child: Text(localizations.ok),
               ),
             ],
           ),
@@ -96,12 +96,12 @@ class BackupRestorePage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text("Export Failed"),
+            title: Text(localizations.exportFailedTitle),
             content: Text(localizations.exportError(e.toString())),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text("OK"),
+                child: Text(localizations.ok),
               ),
             ],
           ),
@@ -141,7 +141,7 @@ class BackupRestorePage extends StatelessWidget {
                 }
                 if (snapshot.hasError) {
                   return Text(
-                    "Error loading backups: ${snapshot.error}",
+                    localizations.errorLoadingBackups(snapshot.error.toString()),
                     style: const TextStyle(color: Colors.red),
                   );
                 }
@@ -152,11 +152,11 @@ class BackupRestorePage extends StatelessWidget {
                     children: [
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 24.0),
-                        child: Text("No backup files found."),
+                        child: Text(localizations.noBackupFilesFound),
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(dialogContext).pop(),
-                        child: const Text("OK"),
+                        child: Text(localizations.ok),
                       ),
                     ],
                   );
@@ -199,7 +199,7 @@ class BackupRestorePage extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(),
-              child: const Text("Cancel"),
+              child: Text(localizations.cancel),
             ),
           ],
         );
@@ -221,7 +221,7 @@ class BackupRestorePage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text("Cancel"),
+            child: Text(localizations.cancel),
           ),
           TextButton(
             onPressed: () async {
@@ -234,7 +234,7 @@ class BackupRestorePage extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (successDialogContext) => AlertDialog(
-                      title: const Text("Import Success"),
+                      title: Text(localizations.importSuccess),
                       content: Text(localizations.importSuccess),
                       actions: [
                         TextButton(
@@ -242,7 +242,7 @@ class BackupRestorePage extends StatelessWidget {
                             Navigator.of(successDialogContext).pop();
                             Navigator.of(context).pop();
                           },
-                          child: const Text("OK"),
+                          child: Text(localizations.ok),
                         ),
                       ],
                     ),
@@ -253,12 +253,12 @@ class BackupRestorePage extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (dialogContext) => AlertDialog(
-                      title: const Text("Import Failed"),
+                      title: Text(localizations.importFailed),
                       content: Text(localizations.importError(e.toString())),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.of(dialogContext).pop(),
-                          child: const Text("OK"),
+                          child: Text(localizations.ok),
                         ),
                       ],
                     ),
@@ -266,7 +266,7 @@ class BackupRestorePage extends StatelessWidget {
                 }
               }
             },
-            child: const Text("Import"),
+            child: Text(localizations.importBackup),
           ),
         ],
       ),

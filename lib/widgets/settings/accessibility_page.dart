@@ -152,18 +152,18 @@ class _AccessibilityPageState extends State<AccessibilityPage> with WidgetsBindi
     final packageInfo = await PackageInfo.fromPlatform();
     final packageName = packageInfo.packageName;
     if (!context.mounted) return;
+    final localizations = AppLocalizations.of(context)!;
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Accessibility Permission'),
+        title: Text(localizations.accessibilityPermission),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'On this device, the Accessibility settings screen could not be opened automatically.\n\n'
-              'To enable Home Button Fix, you can grant permission manually by running this ADB command from a computer connected to the TV:',
+            Text(
+              localizations.accessibilityPermissionGuide,
             ),
             const SizedBox(height: 12),
             Container(
@@ -182,7 +182,7 @@ class _AccessibilityPageState extends State<AccessibilityPage> with WidgetsBindi
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
+            child: Text(localizations.ok),
           ),
         ],
       ),

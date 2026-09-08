@@ -42,7 +42,7 @@ class NotificationsPanel extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Notifications",
+                            localizations.notifications,
                             style: theme.textTheme.titleLarge,
                           ),
                           Row(
@@ -71,7 +71,7 @@ class NotificationsPanel extends StatelessWidget {
                                     await notificationsService.dismissAll();
                                   },
                                   icon: const Icon(Icons.clear_all, size: 18),
-                                  label: const Text("Clear All"),
+                                  label: Text(localizations.clearAll),
                                   style: TextButton.styleFrom(
                                     foregroundColor: theme.colorScheme.primary,
                                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -96,7 +96,7 @@ class NotificationsPanel extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 16),
                                   Text(
-                                    "All caught up!",
+                                    localizations.allCaughtUp,
                                     style: theme.textTheme.bodyLarge?.copyWith(
                                       color: theme.hintColor,
                                     ),
@@ -207,7 +207,7 @@ class NotificationsPanel extends StatelessWidget {
                                             if (notification.isClearable)
                                               IconButton(
                                                 icon: const Icon(Icons.close, size: 18),
-                                                tooltip: "Dismiss",
+                                                tooltip: localizations.dismiss,
                                                 padding: EdgeInsets.zero,
                                                 constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
                                                 onPressed: () => notificationsService.dismiss(notification.key),

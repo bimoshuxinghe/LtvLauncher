@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import 'package:flauncher/l10n/app_localizations.dart';
 import 'package:flauncher/gradients.dart';
 import 'package:flauncher/providers/wallpaper_service.dart';
 import 'package:flauncher/widgets/ensure_visible.dart';
@@ -28,7 +29,7 @@ class GradientPanelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          Text("Gradient", style: Theme.of(context).textTheme.titleLarge),
+          Text(AppLocalizations.of(context)!.gradient, style: Theme.of(context).textTheme.titleLarge),
           const Divider(),
           Expanded(
             child: GridView.count(

@@ -111,8 +111,8 @@ class AccentColorPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    const Text(
-                      'Selected Accent',
+                    Text(
+                      localizations.selectedAccent,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 13,

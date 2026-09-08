@@ -2,6 +2,8 @@ name: Release APK
 
 on:
   push:
+    branches:
+      - master
     tags:
       - 'v*'
   workflow_dispatch:
@@ -56,38 +58,37 @@ jobs:
         run: |
           python3 -c "import os, base64; s = os.environ['KEYSTORE_BASE64']; s = ''.join(s.split()); m = len(s) % 4; s += '=' * (4 - m) if m else ''; open('android/my-release-key.jks', 'wb').write(base64.b64decode(s))"
 
-      - name: Build Release APKs
+      - name: Build armeabi-v7a Release APK
         env:
           KEYSTORE_FILE: "../my-release-key.jks"
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          # Build universal APK first
-          flutter build apk --release --target-platform=android-arm,android-arm64
-          # Rename/save it temporarily
-          mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app-release.apk.temp
-          # Build split APKs
-          flutter build apk --release --split-per-abi --target-platform=android-arm,android-arm64
-          # Rename to final LTvLauncher-* names
-          mv build/app/outputs/flutter-apk/app-release.apk.temp build/app/outputs/flutter-apk/LTvLauncher-universal-release.apk
-          mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/LTvLauncher-armeabi-v7a-release.apk
-          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/LTvLauncher-arm64-v8a-release.apk
+          flutter build apk --release --target-platform=android-arm
+          mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/LTvLauncher-armeabi-v7a-release.apk
+
+      - name: Upload armeabi-v7a APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LTvLauncher-armeabi-v7a
+          path: build/app/outputs/flutter-apk/LTvLauncher-armeabi-v7a-release.apk
+          if-no-files-found: error
 
       - name: Generate Release Notes
+        if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
         env:
           TAG_NAME: ${{ github.event.inputs.tag_name || github.ref_name }}
         run: python3 .github/scripts/generate_release_notes.py
 
-      - name: Create GitHub Release and Upload APKs
+      - name: Create GitHub Release and Upload APK
+        if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
           body_path: release_notes.md
           files: |
-            build/app/outputs/flutter-apk/LTvLauncher-universal-release.apk
             build/app/outputs/flutter-apk/LTvLauncher-armeabi-v7a-release.apk
-            build/app/outputs/flutter-apk/LTvLauncher-arm64-v8a-release.apk
           draft: false
           prerelease: ${{ contains(github.event.inputs.tag_name || github.ref_name, '-') }}
         env:

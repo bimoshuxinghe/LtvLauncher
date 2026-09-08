@@ -38,6 +38,7 @@ class LTvLauncherAboutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsService = context.watch<SettingsService>();
+    final localizations = AppLocalizations.of(context)!;
     final accentColor = _hexToColor(settingsService.accentColorHex);
 
     return Dialog(
@@ -91,8 +92,8 @@ class LTvLauncherAboutDialog extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
-                "Developed by LeanBitLab",
+              Text(
+                localizations.developedBy,
                 style: TextStyle(
                   color: Colors.white70,
                   fontSize: 13,
@@ -104,7 +105,7 @@ class LTvLauncherAboutDialog extends StatelessWidget {
               _AboutButton(
                 icon: Icons.favorite,
                 iconColor: const Color(0xFFE91E63),
-                label: "Sponsor Project",
+                label: localizations.sponsorProject,
                 accentColor: accentColor,
                 autofocus: true,
                 onPressed: () {
@@ -117,7 +118,7 @@ class LTvLauncherAboutDialog extends StatelessWidget {
               _AboutButton(
                 icon: Icons.code,
                 iconColor: Colors.white70,
-                label: "Source Code",
+                label: localizations.sourceCode,
                 accentColor: accentColor,
                 onPressed: () {
                   FLauncherChannel().openUrl("https://github.com/leanbitlab-org/LtvLauncher");
@@ -128,8 +129,8 @@ class LTvLauncherAboutDialog extends StatelessWidget {
               // Close Action
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text(
-                  "Close",
+                child: Text(
+                  localizations.close,
                   style: TextStyle(color: Colors.white54, fontSize: 13),
                 ),
               ),

@@ -180,18 +180,18 @@ class GeneralSettingsPage extends StatelessWidget {
     final packageInfo = await PackageInfo.fromPlatform();
     final packageName = packageInfo.packageName;
     if (!context.mounted) return;
+    final localizations = AppLocalizations.of(context)!;
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Notification Access'),
+        title: Text(localizations.notificationAccess),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'On this device, the Notification Access settings screen could not be opened automatically.\n\n'
-              'To enable notifications, you can grant permission manually by running this ADB command from a computer connected to the TV:',
+            Text(
+              localizations.notificationAccessGuide,
             ),
             const SizedBox(height: 12),
             Container(
@@ -210,7 +210,7 @@ class GeneralSettingsPage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
+            child: Text(localizations.ok),
           ),
         ],
       ),
@@ -221,18 +221,18 @@ class GeneralSettingsPage extends StatelessWidget {
     final packageInfo = await PackageInfo.fromPlatform();
     final packageName = packageInfo.packageName;
     if (!context.mounted) return;
+    final localizations = AppLocalizations.of(context)!;
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Overlay Permission'),
+        title: Text(localizations.overlayPermission),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'On this device, the Overlay Permission settings screen could not be opened automatically.\n\n'
-              'To enable overlay popups, you can grant permission manually by running this ADB command from a computer connected to the TV:',
+            Text(
+              localizations.overlayPermissionGuide,
             ),
             const SizedBox(height: 12),
             Container(
@@ -251,7 +251,7 @@ class GeneralSettingsPage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
+            child: Text(localizations.ok),
           ),
         ],
       ),

@@ -212,5 +212,85 @@
     "temperatureUnit": "Temperature Unit",
     "celsius": "Celsius (°C)",
     "fahrenheit": "Fahrenheit (°F)",
-    "breezyWeatherSetupHint": "Install Breezy Weather and enable 'Local data sharing' / 'Gadgetbridge' in its settings to see weather and rain warnings."
+    "breezyWeatherSetupHint": "Install Breezy Weather and enable 'Local data sharing' / 'Gadgetbridge' in its settings to see weather and rain warnings.",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "addToCategory": "Add to Category",
+    "setCustomBanner": "Set Custom Banner",
+    "clearCustomBanner": "Clear Custom Banner",
+    "setBannerFailed": "Failed to set banner: {error}",
+    "@setBannerFailed": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "clearBannerFailed": "Failed to clear banner: {error}",
+    "@clearBannerFailed": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "grantUsagePermission": "Grant Usage Permission",
+    "accessibilityPermission": "Accessibility Permission",
+    "shareFailed": "Share Failed",
+    "shareBackupFailed": "Failed to share backup: {error}",
+    "@shareBackupFailed": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "exportSuccessTitle": "Export Success",
+    "exportFailedTitle": "Export Failed",
+    "noBackupFilesFound": "No backup files found.",
+    "importFailed": "Import Failed",
+    "brightnessAdbPermissionHint": "To control brightness on this device, you must grant permission via ADB:",
+    "grantPermission": "Grant Permission",
+    "checkStatus": "Check Status",
+    "overlayPermission": "Overlay Permission",
+    "customName": "Custom Name",
+    "lastUsed": "Last Used",
+    "clearAll": "Clear All",
+    "dismiss": "Dismiss",
+    "errorLoadingBackups": "Error loading backups: {error}",
+    "@errorLoadingBackups": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "addToFavorites": "Add to Fav",
+    "removeFromFavorites": "Remove from Fav",
+    "selectedAccent": "Selected Accent",
+    "accessibilityPermissionGuide": "On this device, the Accessibility settings screen could not be opened automatically.\n\nTo enable Home Button Fix, you can grant permission manually by running this ADB command from a computer connected to the TV:",
+    "enableScheduler": "Enable Scheduler",
+    "brightnessExperimentalNote": "EXPERIMENTAL: This feature is untested and may be removed in future versions based on user feedback.",
+    "brightnessSupportNote": "Note: Some Android TV devices may not support app-level brightness control.",
+    "developedBy": "Developed by LeanBitLab",
+    "close": "Close",
+    "sponsorProject": "Sponsor Project",
+    "sourceCode": "Source Code",
+    "notificationAccessGuide": "On this device, the Notification Access settings screen could not be opened automatically.\n\nTo enable notifications, you can grant permission manually by running this ADB command from a computer connected to the TV:",
+    "overlayPermissionGuide": "On this device, the Overlay Permission settings screen could not be opened automatically.\n\nTo enable overlay popups, you can grant permission manually by running this ADB command from a computer connected to the TV:",
+    "noInputsDetected": "No inputs detected",
+    "notifications": "Notifications",
+    "allCaughtUp": "All caught up!",
+    "continueWatchingAdbHint": "ADB grant required for Continue Watching:",
+    "dataUsageWeekly": "Weekly: ",
+    "dataUsageMonthly": "Monthly: ",
+    "dataUsageDaily": "Daily: ",
+    "currentLabel": "Current: {value}",
+    "@currentLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    }
 }
