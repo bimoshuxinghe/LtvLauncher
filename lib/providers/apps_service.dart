@@ -242,7 +242,7 @@ class AppsService extends ChangeNotifier {
     return _database.transaction(() async {
       if (nonTvApplications.isNotEmpty) {
         int categoryId = await addCategory(
-          "Non-TV Apps",
+          "非电视应用",
           shouldNotifyListeners: false,
         );
         Category nonTvAppsCategory = _categoriesById[categoryId]!;
@@ -251,7 +251,7 @@ class AppsService extends ChangeNotifier {
       }
 
       if (tvApplications.isNotEmpty) {
-        int categoryId = await addCategory("TV Apps",
+        int categoryId = await addCategory("电视应用",
             type: CategoryType.grid, shouldNotifyListeners: false);
 
         Category tvAppsCategory = _categoriesById[categoryId]!;
@@ -414,8 +414,9 @@ class AppsService extends ChangeNotifier {
       }
     }
 
-    final targetName = isSideloaded ? "non-tv apps" : "tv apps";
-    return _categoriesByNameCache![targetName] ?? _fallbackCategoryCache;
+    final targetName = isSideloaded ? "非电视应用" : "电视应用";
+    final legacyName = isSideloaded ? "non-tv apps" : "tv apps";
+    return _categoriesByNameCache![targetName] ?? _categoriesByNameCache![legacyName] ?? _fallbackCategoryCache;
   }
 
   Future<Uint8List> getAppBanner(String packageName) async {
@@ -575,10 +576,12 @@ class AppsService extends ChangeNotifier {
 
     switch (actualCategory.name) {
       case 'TV Apps':
+      case '电视应用':
         appsToAdd =
             _applications.values.where((app) => !app.sideloaded && !app.hidden);
         break;
       case 'Non-TV Apps':
+      case '非电视应用':
         appsToAdd =
             _applications.values.where((app) => app.sideloaded && !app.hidden);
         break;

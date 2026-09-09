@@ -1294,6 +1294,396 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Current: {value}'**
   String currentLabel(String value);
+
+  /// No description provided for @noApplicationsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No applications found'**
+  String get noApplicationsFound;
+
+  /// No description provided for @selectAName.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a name'**
+  String get selectAName;
+
+  /// No description provided for @customPreset.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom...'**
+  String get customPreset;
+
+  /// No description provided for @invalidDateFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid format'**
+  String get invalidDateFormat;
+
+  /// No description provided for @selectFormatsBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'Select formats below'**
+  String get selectFormatsBelow;
+
+  /// No description provided for @backupShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'LTvLauncher Backup'**
+  String get backupShareText;
+
+  /// No description provided for @homeButtonFixHint.
+  ///
+  /// In en, this message translates to:
+  /// **'If you are using Google TV, enable \"Home Button Fix\" under Accessibility settings to make the Home button open this launcher.'**
+  String get homeButtonFixHint;
+
+  /// No description provided for @presetTvApps.
+  ///
+  /// In en, this message translates to:
+  /// **'TV Apps'**
+  String get presetTvApps;
+
+  /// No description provided for @presetNonTvApps.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-TV Apps'**
+  String get presetNonTvApps;
+
+  /// No description provided for @presetMoviesShows.
+  ///
+  /// In en, this message translates to:
+  /// **'Movies & Shows'**
+  String get presetMoviesShows;
+
+  /// No description provided for @presetMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Music'**
+  String get presetMusic;
+
+  /// No description provided for @presetGames.
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get presetGames;
+
+  /// No description provided for @presetEntertainment.
+  ///
+  /// In en, this message translates to:
+  /// **'Entertainment'**
+  String get presetEntertainment;
+
+  /// No description provided for @presetLiveTv.
+  ///
+  /// In en, this message translates to:
+  /// **'Live TV'**
+  String get presetLiveTv;
+
+  /// No description provided for @presetSports.
+  ///
+  /// In en, this message translates to:
+  /// **'Sports'**
+  String get presetSports;
+
+  /// No description provided for @presetNews.
+  ///
+  /// In en, this message translates to:
+  /// **'News'**
+  String get presetNews;
+
+  /// No description provided for @presetTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get presetTools;
+
+  /// No description provided for @presetFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get presetFavorites;
+
+  /// No description provided for @colorRed.
+  ///
+  /// In en, this message translates to:
+  /// **'Red'**
+  String get colorRed;
+
+  /// No description provided for @colorCyan.
+  ///
+  /// In en, this message translates to:
+  /// **'Cyan'**
+  String get colorCyan;
+
+  /// No description provided for @colorIndigo.
+  ///
+  /// In en, this message translates to:
+  /// **'Indigo'**
+  String get colorIndigo;
+
+  /// No description provided for @colorLime.
+  ///
+  /// In en, this message translates to:
+  /// **'Lime'**
+  String get colorLime;
+
+  /// No description provided for @colorAmber.
+  ///
+  /// In en, this message translates to:
+  /// **'Amber'**
+  String get colorAmber;
+
+  /// No description provided for @colorRose.
+  ///
+  /// In en, this message translates to:
+  /// **'Rose'**
+  String get colorRose;
+
+  /// No description provided for @colorIceBlue.
+  ///
+  /// In en, this message translates to:
+  /// **'Ice Blue'**
+  String get colorIceBlue;
+
+  /// No description provided for @clockStyleMinimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimal'**
+  String get clockStyleMinimal;
+
+  /// No description provided for @clockStyleMinimalDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Thin, elegant font (Default)'**
+  String get clockStyleMinimalDesc;
+
+  /// No description provided for @clockStyleBold.
+  ///
+  /// In en, this message translates to:
+  /// **'Bold'**
+  String get clockStyleBold;
+
+  /// No description provided for @clockStyleBoldDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Thick, highly visible font'**
+  String get clockStyleBoldDesc;
+
+  /// No description provided for @clockStyleRetro.
+  ///
+  /// In en, this message translates to:
+  /// **'Retro'**
+  String get clockStyleRetro;
+
+  /// No description provided for @clockStyleRetroDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Monospaced, retro terminal style'**
+  String get clockStyleRetroDesc;
+
+  /// No description provided for @clockStyleElegant.
+  ///
+  /// In en, this message translates to:
+  /// **'Elegant'**
+  String get clockStyleElegant;
+
+  /// No description provided for @clockStyleElegantDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic serif typeface'**
+  String get clockStyleElegantDesc;
+
+  /// No description provided for @clockStyleNeon.
+  ///
+  /// In en, this message translates to:
+  /// **'Neon'**
+  String get clockStyleNeon;
+
+  /// No description provided for @clockStyleNeonDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ultra-thin, glowing style'**
+  String get clockStyleNeonDesc;
+
+  /// No description provided for @clockStylePixel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pixel'**
+  String get clockStylePixel;
+
+  /// No description provided for @clockStylePixelDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Bold monospaced, arcade feel'**
+  String get clockStylePixelDesc;
+
+  /// No description provided for @clockStyleDigital.
+  ///
+  /// In en, this message translates to:
+  /// **'Digital'**
+  String get clockStyleDigital;
+
+  /// No description provided for @clockStyleDigitalDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean monospaced display'**
+  String get clockStyleDigitalDesc;
+
+  /// No description provided for @gradGreatWhale.
+  ///
+  /// In en, this message translates to:
+  /// **'Great Whale'**
+  String get gradGreatWhale;
+
+  /// No description provided for @gradViciousStance.
+  ///
+  /// In en, this message translates to:
+  /// **'Vicious Stance'**
+  String get gradViciousStance;
+
+  /// No description provided for @gradTeenNotebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Teen Notebook'**
+  String get gradTeenNotebook;
+
+  /// No description provided for @gradOldHat.
+  ///
+  /// In en, this message translates to:
+  /// **'Old Hat'**
+  String get gradOldHat;
+
+  /// No description provided for @gradBurningSpring.
+  ///
+  /// In en, this message translates to:
+  /// **'Burning Spring'**
+  String get gradBurningSpring;
+
+  /// No description provided for @gradDesertHump.
+  ///
+  /// In en, this message translates to:
+  /// **'Desert Hump'**
+  String get gradDesertHump;
+
+  /// No description provided for @gradFarawayRiver.
+  ///
+  /// In en, this message translates to:
+  /// **'Faraway River'**
+  String get gradFarawayRiver;
+
+  /// No description provided for @gradSaintPetersburg.
+  ///
+  /// In en, this message translates to:
+  /// **'Saint Petersburg'**
+  String get gradSaintPetersburg;
+
+  /// No description provided for @gradAfricanField.
+  ///
+  /// In en, this message translates to:
+  /// **'African Field'**
+  String get gradAfricanField;
+
+  /// No description provided for @gradGrassShampoo.
+  ///
+  /// In en, this message translates to:
+  /// **'Grass Shampoo'**
+  String get gradGrassShampoo;
+
+  /// No description provided for @gradPitchBlack.
+  ///
+  /// In en, this message translates to:
+  /// **'Pitch Black'**
+  String get gradPitchBlack;
+
+  /// No description provided for @weatherRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain'**
+  String get weatherRain;
+
+  /// No description provided for @weatherSnow.
+  ///
+  /// In en, this message translates to:
+  /// **'Snow'**
+  String get weatherSnow;
+
+  /// No description provided for @weatherStorm.
+  ///
+  /// In en, this message translates to:
+  /// **'Storm'**
+  String get weatherStorm;
+
+  /// No description provided for @weatherToday.
+  ///
+  /// In en, this message translates to:
+  /// **'today'**
+  String get weatherToday;
+
+  /// No description provided for @weatherTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'tomorrow'**
+  String get weatherTomorrow;
+
+  /// No description provided for @weatherDayMon.
+  ///
+  /// In en, this message translates to:
+  /// **'Mon'**
+  String get weatherDayMon;
+
+  /// No description provided for @weatherDayTue.
+  ///
+  /// In en, this message translates to:
+  /// **'Tue'**
+  String get weatherDayTue;
+
+  /// No description provided for @weatherDayWed.
+  ///
+  /// In en, this message translates to:
+  /// **'Wed'**
+  String get weatherDayWed;
+
+  /// No description provided for @weatherDayThu.
+  ///
+  /// In en, this message translates to:
+  /// **'Thu'**
+  String get weatherDayThu;
+
+  /// No description provided for @weatherDayFri.
+  ///
+  /// In en, this message translates to:
+  /// **'Fri'**
+  String get weatherDayFri;
+
+  /// No description provided for @weatherDaySat.
+  ///
+  /// In en, this message translates to:
+  /// **'Sat'**
+  String get weatherDaySat;
+
+  /// No description provided for @weatherDaySun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun'**
+  String get weatherDaySun;
+
+  /// No description provided for @noBackupDirectory.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not find any suitable directory for backup'**
+  String get noBackupDirectory;
+
+  /// No description provided for @backupFileNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup file not found at {path}'**
+  String backupFileNotFound(String path);
+
+  /// No description provided for @invalidBackupVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid backup file version'**
+  String get invalidBackupVersion;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

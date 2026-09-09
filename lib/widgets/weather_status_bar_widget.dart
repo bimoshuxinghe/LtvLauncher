@@ -1,3 +1,4 @@
+import 'package:flauncher/l10n/app_localizations.dart';
 import 'package:flauncher/models/weather_data.dart';
 import 'package:flauncher/providers/settings_service.dart';
 import 'package:flauncher/providers/weather_service.dart';
@@ -39,7 +40,7 @@ class _WeatherStatusBarWidgetState extends State<WeatherStatusBarWidget> {
 
             String displayText;
             if (isWarning && weather.warningText != null) {
-              displayText = "${weather.warningText} • $tempText";
+              displayText = "${_localizedWarning(context, weather.warningText!)} • $tempText";
             } else if (weather.currentCondition != null && weather.currentCondition!.isNotEmpty) {
               displayText = "$tempText • ${weather.currentCondition}";
             } else {
@@ -123,4 +124,32 @@ class _WeatherStatusBarWidgetState extends State<WeatherStatusBarWidget> {
       },
     );
   }
+}
+
+String _localizedWarning(BuildContext context, String text) {
+  final l = AppLocalizations.of(context)!;
+  final m = RegExp(r'^(?:(\d+%) )?(Rain|Snow|Storm) (.+)$').firstMatch(text);
+  if (m == null) return text;
+  final precip = m.group(1);
+  final type = {
+    'Rain': l.weatherRain,
+    'Snow': l.weatherSnow,
+    'Storm': l.weatherStorm,
+  }[m.group(2)]!;
+  final dayRaw = m.group(3)!;
+  final shortDays = {
+    'Mon': l.weatherDayMon, 'Tue': l.weatherDayTue, 'Wed': l.weatherDayWed,
+    'Thu': l.weatherDayThu, 'Fri': l.weatherDayFri, 'Sat': l.weatherDaySat,
+    'Sun': l.weatherDaySun,
+  };
+  String day;
+  if (dayRaw == 'today') {
+    day = l.weatherToday;
+  } else if (dayRaw == 'tomorrow') {
+    day = l.weatherTomorrow;
+  } else {
+    day = dayRaw.replaceAllMapped(
+        RegExp(r'^on (\w+)$'), (mm) => shortDays[mm.group(1)] ?? mm.group(1)!);
+  }
+  return precip == null ? '$day$type' : '$day$type $precip';
 }

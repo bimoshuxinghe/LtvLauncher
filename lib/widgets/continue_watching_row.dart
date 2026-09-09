@@ -36,7 +36,7 @@ class ContinueWatchingRow extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      '\${AppLocalizations.of(context)!.continueWatchingAdbHint} adb shell pm grant com.leanbitlab.ltvL com.android.providers.tv.permission.READ_WRITE_WATCH_NEXT_PROGRAMS',
+                      '${AppLocalizations.of(context)!.continueWatchingAdbHint} adb shell pm grant com.leanbitlab.ltvL com.android.providers.tv.permission.READ_WRITE_WATCH_NEXT_PROGRAMS',
                       style: const TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ),

@@ -621,4 +621,201 @@ class AppLocalizationsZh extends AppLocalizations {
   String currentLabel(String value) {
     return '当前：$value';
   }
+
+  @override
+  String get noApplicationsFound => '未找到应用';
+
+  @override
+  String get selectAName => '选择名称';
+
+  @override
+  String get customPreset => '自定义…';
+
+  @override
+  String get invalidDateFormat => '格式无效';
+
+  @override
+  String get selectFormatsBelow => '请在下方选择格式';
+
+  @override
+  String get backupShareText => 'LTvLauncher 备份';
+
+  @override
+  String get homeButtonFixHint => '如果你使用的是 Google TV，请在「无障碍」设置中启用「Home 键修复」，按 Home 键才会打开本桌面。';
+
+  @override
+  String get presetTvApps => '电视应用';
+
+  @override
+  String get presetNonTvApps => '非电视应用';
+
+  @override
+  String get presetMoviesShows => '影视';
+
+  @override
+  String get presetMusic => '音乐';
+
+  @override
+  String get presetGames => '游戏';
+
+  @override
+  String get presetEntertainment => '娱乐';
+
+  @override
+  String get presetLiveTv => '直播电视';
+
+  @override
+  String get presetSports => '体育';
+
+  @override
+  String get presetNews => '新闻';
+
+  @override
+  String get presetTools => '工具';
+
+  @override
+  String get presetFavorites => '收藏';
+
+  @override
+  String get colorRed => '红色';
+
+  @override
+  String get colorCyan => '青色';
+
+  @override
+  String get colorIndigo => '靛蓝';
+
+  @override
+  String get colorLime => '青柠';
+
+  @override
+  String get colorAmber => '琥珀';
+
+  @override
+  String get colorRose => '玫红';
+
+  @override
+  String get colorIceBlue => '冰蓝';
+
+  @override
+  String get clockStyleMinimal => '极简';
+
+  @override
+  String get clockStyleMinimalDesc => '纤细优雅的字体（默认）';
+
+  @override
+  String get clockStyleBold => '粗体';
+
+  @override
+  String get clockStyleBoldDesc => '粗厚醒目的字体';
+
+  @override
+  String get clockStyleRetro => '复古';
+
+  @override
+  String get clockStyleRetroDesc => '等宽字体，复古终端风';
+
+  @override
+  String get clockStyleElegant => '优雅';
+
+  @override
+  String get clockStyleElegantDesc => '经典衬线字体';
+
+  @override
+  String get clockStyleNeon => '霓虹';
+
+  @override
+  String get clockStyleNeonDesc => '极细发光风格';
+
+  @override
+  String get clockStylePixel => '像素';
+
+  @override
+  String get clockStylePixelDesc => '粗体等宽，街机风格';
+
+  @override
+  String get clockStyleDigital => '数字';
+
+  @override
+  String get clockStyleDigitalDesc => '简洁等宽显示';
+
+  @override
+  String get gradGreatWhale => '巨鲸';
+
+  @override
+  String get gradViciousStance => '凛然';
+
+  @override
+  String get gradTeenNotebook => '青春笔记';
+
+  @override
+  String get gradOldHat => '旧草帽';
+
+  @override
+  String get gradBurningSpring => '炽春';
+
+  @override
+  String get gradDesertHump => '沙丘';
+
+  @override
+  String get gradFarawayRiver => '远河';
+
+  @override
+  String get gradSaintPetersburg => '圣彼得堡';
+
+  @override
+  String get gradAfricanField => '非洲原野';
+
+  @override
+  String get gradGrassShampoo => '青草';
+
+  @override
+  String get gradPitchBlack => '纯黑';
+
+  @override
+  String get weatherRain => '降雨';
+
+  @override
+  String get weatherSnow => '降雪';
+
+  @override
+  String get weatherStorm => '风暴';
+
+  @override
+  String get weatherToday => '今天';
+
+  @override
+  String get weatherTomorrow => '明天';
+
+  @override
+  String get weatherDayMon => '周一';
+
+  @override
+  String get weatherDayTue => '周二';
+
+  @override
+  String get weatherDayWed => '周三';
+
+  @override
+  String get weatherDayThu => '周四';
+
+  @override
+  String get weatherDayFri => '周五';
+
+  @override
+  String get weatherDaySat => '周六';
+
+  @override
+  String get weatherDaySun => '周日';
+
+  @override
+  String get noBackupDirectory => '找不到可用于存放备份的目录';
+
+  @override
+  String backupFileNotFound(String path) {
+    return '在 $path 未找到备份文件';
+  }
+
+  @override
+  String get invalidBackupVersion => '备份文件版本无效';
 }

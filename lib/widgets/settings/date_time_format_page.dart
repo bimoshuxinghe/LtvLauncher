@@ -141,6 +141,7 @@ class _DateTimeFormatPageState extends State<DateTimeFormatPage> {
   }
 
   Widget _buildPreview(BuildContext context, String dateFormat, String timeFormat) {
+    final localizations = AppLocalizations.of(context)!;
     final now = DateTime.now();
     String preview = '';
 
@@ -153,7 +154,7 @@ class _DateTimeFormatPageState extends State<DateTimeFormatPage> {
         preview += DateFormat(timeFormat, Platform.localeName).format(now);
       }
     } catch (e) {
-      preview = 'Invalid format';
+      preview = localizations.invalidDateFormat;
     }
 
     return Container(
@@ -163,7 +164,7 @@ class _DateTimeFormatPageState extends State<DateTimeFormatPage> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        preview.isEmpty ? 'Select formats below' : preview,
+        preview.isEmpty ? localizations.selectFormatsBelow : preview,
         style: Theme.of(context).textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
         ),

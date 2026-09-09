@@ -254,7 +254,8 @@ class _TVTab extends StatelessWidget {
         selector: (_, appsService) => appsService.applications.where((app) => !app.sideloaded && !app.hidden).toList(),
         builder: (context, applications, _) {
           if (applications.isEmpty) {
-            return const _EmptyListPlaceholder("No applications found", autofocus: true);
+            final localizations = AppLocalizations.of(context)!;
+            return _EmptyListPlaceholder(localizations.noApplicationsFound, autofocus: true);
           }
           return ListView(
             children: applications
@@ -276,7 +277,8 @@ class _SideloadedTab extends StatelessWidget {
         selector: (_, appsService) => appsService.applications.where((app) => app.sideloaded && !app.hidden).toList(),
         builder: (context, applications, _) {
           if (applications.isEmpty) {
-            return const _EmptyListPlaceholder("No applications found", autofocus: true);
+            final localizations = AppLocalizations.of(context)!;
+            return _EmptyListPlaceholder(localizations.noApplicationsFound, autofocus: true);
           }
           return ListView(
             children: applications
@@ -304,7 +306,8 @@ class _FavoritesTab extends StatelessWidget {
         },
         builder: (context, applications, _) {
           if (applications.isEmpty) {
-            return const _EmptyListPlaceholder("No applications found", autofocus: true);
+            final localizations = AppLocalizations.of(context)!;
+            return _EmptyListPlaceholder(localizations.noApplicationsFound, autofocus: true);
           }
           return ListView(
             children: applications
@@ -326,7 +329,8 @@ class _HiddenTab extends StatelessWidget {
         selector: (_, appsService) => appsService.applications.where((app) => app.hidden).toList(),
         builder: (context, applications, _) {
           if (applications.isEmpty) {
-            return const _EmptyListPlaceholder("No applications found", autofocus: true);
+            final localizations = AppLocalizations.of(context)!;
+            return _EmptyListPlaceholder(localizations.noApplicationsFound, autofocus: true);
           }
           return ListView(
             children: applications

@@ -197,7 +197,7 @@ class _ColorTileState extends State<_ColorTile> {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  widget.name,
+                  _localizedColorName(context, widget.name),
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: _focused || widget.isSelected ? FontWeight.bold : FontWeight.w500,
@@ -210,5 +210,19 @@ class _ColorTileState extends State<_ColorTile> {
         ),
       ),
     );
+  }
+}
+
+String _localizedColorName(BuildContext context, String name) {
+  final l = AppLocalizations.of(context)!;
+  switch (name) {
+    case 'Red': return l.colorRed;
+    case 'Cyan': return l.colorCyan;
+    case 'Indigo': return l.colorIndigo;
+    case 'Lime': return l.colorLime;
+    case 'Amber': return l.colorAmber;
+    case 'Rose': return l.colorRose;
+    case 'Ice Blue': return l.colorIceBlue;
+    default: return name;
   }
 }

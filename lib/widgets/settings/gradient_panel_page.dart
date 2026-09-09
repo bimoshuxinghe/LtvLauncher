@@ -76,7 +76,7 @@ class GradientPanelPage extends StatelessWidget {
                           color: Focus.of(context).hasFocus ? Colors.white : null,
                         ),
                     duration: const Duration(milliseconds: 50),
-                    child: Text(fLauncherGradient.name, overflow: TextOverflow.ellipsis),
+                    child: Text(_localizedGradientName(context, fLauncherGradient.name), overflow: TextOverflow.ellipsis),
                   ),
                 ),
               ],
@@ -88,4 +88,22 @@ class GradientPanelPage extends StatelessWidget {
   ShapeBorder? _cardBorder(bool hasFocus) => hasFocus
       ? RoundedRectangleBorder(side: const BorderSide(color: Colors.white, width: 2), borderRadius: BorderRadius.circular(12))
       : RoundedRectangleBorder(borderRadius: BorderRadius.circular(12));
+}
+
+String _localizedGradientName(BuildContext context, String name) {
+  final l = AppLocalizations.of(context)!;
+  switch (name) {
+    case 'Great Whale': return l.gradGreatWhale;
+    case 'Vicious Stance': return l.gradViciousStance;
+    case 'Teen Notebook': return l.gradTeenNotebook;
+    case 'Old Hat': return l.gradOldHat;
+    case 'Burning Spring': return l.gradBurningSpring;
+    case 'Desert Hump': return l.gradDesertHump;
+    case 'Faraway River': return l.gradFarawayRiver;
+    case 'Saint Petersburg': return l.gradSaintPetersburg;
+    case 'African Field': return l.gradAfricanField;
+    case 'Grass Shampoo': return l.gradGrassShampoo;
+    case 'Pitch Black': return l.gradPitchBlack;
+    default: return name;
+  }
 }

@@ -621,4 +621,201 @@ class AppLocalizationsEn extends AppLocalizations {
   String currentLabel(String value) {
     return 'Current: $value';
   }
+
+  @override
+  String get noApplicationsFound => 'No applications found';
+
+  @override
+  String get selectAName => 'Select a name';
+
+  @override
+  String get customPreset => 'Custom...';
+
+  @override
+  String get invalidDateFormat => 'Invalid format';
+
+  @override
+  String get selectFormatsBelow => 'Select formats below';
+
+  @override
+  String get backupShareText => 'LTvLauncher Backup';
+
+  @override
+  String get homeButtonFixHint => 'If you are using Google TV, enable \"Home Button Fix\" under Accessibility settings to make the Home button open this launcher.';
+
+  @override
+  String get presetTvApps => 'TV Apps';
+
+  @override
+  String get presetNonTvApps => 'Non-TV Apps';
+
+  @override
+  String get presetMoviesShows => 'Movies & Shows';
+
+  @override
+  String get presetMusic => 'Music';
+
+  @override
+  String get presetGames => 'Games';
+
+  @override
+  String get presetEntertainment => 'Entertainment';
+
+  @override
+  String get presetLiveTv => 'Live TV';
+
+  @override
+  String get presetSports => 'Sports';
+
+  @override
+  String get presetNews => 'News';
+
+  @override
+  String get presetTools => 'Tools';
+
+  @override
+  String get presetFavorites => 'Favorites';
+
+  @override
+  String get colorRed => 'Red';
+
+  @override
+  String get colorCyan => 'Cyan';
+
+  @override
+  String get colorIndigo => 'Indigo';
+
+  @override
+  String get colorLime => 'Lime';
+
+  @override
+  String get colorAmber => 'Amber';
+
+  @override
+  String get colorRose => 'Rose';
+
+  @override
+  String get colorIceBlue => 'Ice Blue';
+
+  @override
+  String get clockStyleMinimal => 'Minimal';
+
+  @override
+  String get clockStyleMinimalDesc => 'Thin, elegant font (Default)';
+
+  @override
+  String get clockStyleBold => 'Bold';
+
+  @override
+  String get clockStyleBoldDesc => 'Thick, highly visible font';
+
+  @override
+  String get clockStyleRetro => 'Retro';
+
+  @override
+  String get clockStyleRetroDesc => 'Monospaced, retro terminal style';
+
+  @override
+  String get clockStyleElegant => 'Elegant';
+
+  @override
+  String get clockStyleElegantDesc => 'Classic serif typeface';
+
+  @override
+  String get clockStyleNeon => 'Neon';
+
+  @override
+  String get clockStyleNeonDesc => 'Ultra-thin, glowing style';
+
+  @override
+  String get clockStylePixel => 'Pixel';
+
+  @override
+  String get clockStylePixelDesc => 'Bold monospaced, arcade feel';
+
+  @override
+  String get clockStyleDigital => 'Digital';
+
+  @override
+  String get clockStyleDigitalDesc => 'Clean monospaced display';
+
+  @override
+  String get gradGreatWhale => 'Great Whale';
+
+  @override
+  String get gradViciousStance => 'Vicious Stance';
+
+  @override
+  String get gradTeenNotebook => 'Teen Notebook';
+
+  @override
+  String get gradOldHat => 'Old Hat';
+
+  @override
+  String get gradBurningSpring => 'Burning Spring';
+
+  @override
+  String get gradDesertHump => 'Desert Hump';
+
+  @override
+  String get gradFarawayRiver => 'Faraway River';
+
+  @override
+  String get gradSaintPetersburg => 'Saint Petersburg';
+
+  @override
+  String get gradAfricanField => 'African Field';
+
+  @override
+  String get gradGrassShampoo => 'Grass Shampoo';
+
+  @override
+  String get gradPitchBlack => 'Pitch Black';
+
+  @override
+  String get weatherRain => 'Rain';
+
+  @override
+  String get weatherSnow => 'Snow';
+
+  @override
+  String get weatherStorm => 'Storm';
+
+  @override
+  String get weatherToday => 'today';
+
+  @override
+  String get weatherTomorrow => 'tomorrow';
+
+  @override
+  String get weatherDayMon => 'Mon';
+
+  @override
+  String get weatherDayTue => 'Tue';
+
+  @override
+  String get weatherDayWed => 'Wed';
+
+  @override
+  String get weatherDayThu => 'Thu';
+
+  @override
+  String get weatherDayFri => 'Fri';
+
+  @override
+  String get weatherDaySat => 'Sat';
+
+  @override
+  String get weatherDaySun => 'Sun';
+
+  @override
+  String get noBackupDirectory => 'Could not find any suitable directory for backup';
+
+  @override
+  String backupFileNotFound(String path) {
+    return 'Backup file not found at $path';
+  }
+
+  @override
+  String get invalidBackupVersion => 'Invalid backup file version';
 }

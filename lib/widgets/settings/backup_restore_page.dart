@@ -52,7 +52,7 @@ class BackupRestorePage extends StatelessWidget {
     try {
       final settingsService = context.read<SettingsService>();
       final pathStr = await context.read<BackupService>().exportBackup(settingsService);
-      await Share.shareXFiles([XFile(pathStr)], text: 'LTvLauncher Backup');
+      await Share.shareXFiles([XFile(pathStr)], text: localizations.backupShareText);
     } catch (e) {
       if (context.mounted) {
         showDialog(
@@ -97,7 +97,7 @@ class BackupRestorePage extends StatelessWidget {
           context: context,
           builder: (context) => AlertDialog(
             title: Text(localizations.exportFailedTitle),
-            content: Text(localizations.exportError(e.toString())),
+            content: Text(localizations.exportError(_localizeBackupError(context, e.toString()))),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
@@ -254,7 +254,7 @@ class BackupRestorePage extends StatelessWidget {
                     context: context,
                     builder: (dialogContext) => AlertDialog(
                       title: Text(localizations.importFailed),
-                      content: Text(localizations.importError(e.toString())),
+                      content: Text(localizations.importError(_localizeBackupError(context, e.toString()))),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.of(dialogContext).pop(),
@@ -272,4 +272,15 @@ class BackupRestorePage extends StatelessWidget {
       ),
     );
   }
+}
+
+String _localizeBackupError(BuildContext context, String msg) {
+  final l = AppLocalizations.of(context)!;
+  if (msg.startsWith('Backup file not found at ')) {
+    return l.backupFileNotFound(msg.substring('Backup file not found at '.length));
+  }
+  if (msg.contains('No backup files found')) return l.noBackupFilesFound;
+  if (msg.contains('Invalid backup file version')) return l.invalidBackupVersion;
+  if (msg.contains('Could not find any suitable directory')) return l.noBackupDirectory;
+  return msg;
 }

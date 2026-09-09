@@ -132,7 +132,7 @@ class _AccessibilityPageState extends State<AccessibilityPage> with WidgetsBindi
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
-                    'If you are using Google TV, enable "Home Button Fix" under Accessibility settings to make the Home button open this launcher.',
+                    localizations.homeButtonFixHint,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Colors.white54,
                         ),

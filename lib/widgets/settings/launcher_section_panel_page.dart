@@ -26,22 +26,6 @@ import 'package:flauncher/l10n/app_localizations.dart';
 
 import '../../models/category.dart';
 
-// Section name presets for TV remote-friendly selection
-// First 2 are special auto-populating categories
-const List<String> sectionNamePresets = [
-  'TV Apps',             // Auto: non-sideloaded apps
-  'Non-TV Apps',         // Auto: sideloaded apps
-  'Movies & Shows',
-  'Music',
-  'Games',
-  'Entertainment',
-  'Live TV',
-  'Sports',
-  'News',
-  'Tools',
-  'Favorites',
-  'Custom...',
-];
 
 class _SettingsState extends ChangeNotifier
 {
@@ -434,11 +418,11 @@ class _CategorySettingsState extends State<_CategorySettings>
               autofocus: _creating,
               isDense: true,
               isExpanded: true,
-              value: sectionNamePresets.contains(_name) ? _name : 'Custom...',
-              hint: Text(_name.isEmpty ? 'Select a name' : _name, style: Theme.of(context).textTheme.bodySmall),
+              value: _presets(localizations).contains(_name) ? _name : localizations.customPreset,
+              hint: Text(_name.isEmpty ? localizations.selectAName : _name, style: Theme.of(context).textTheme.bodySmall),
               onChanged: (value) {
                 setState(() {
-                  if (value == 'Custom...') {
+                  if (value == localizations.customPreset) {
                     _name = '';
                     _nameController.text = '';
                   } else if (value != null) {
@@ -448,14 +432,14 @@ class _CategorySettingsState extends State<_CategorySettings>
                 });
                 _notifyChange();
               },
-              items: sectionNamePresets.map((name) => DropdownMenuItem(
+              items: _presets(localizations).map((name) => DropdownMenuItem(
                 value: name,
                 child: Text(name, style: Theme.of(context).textTheme.bodySmall),
               )).toList(),
             )
           )
         ),
-        if (!sectionNamePresets.contains(_name) || _name.isEmpty)
+        if (!_presets(localizations).contains(_name) || _name.isEmpty)
           _listTile(
             context,
             Text(localizations.customName),
@@ -639,6 +623,7 @@ class _CategorySettingsState extends State<_CategorySettings>
 
   Future<void> _save() async
   {
+    final localizations = AppLocalizations.of(context)!;
     final AppsService service = context.read();
     if (_creating) {
       int categoryId = await service.addCategory(_name, sort: _categorySort, type: _categoryType,
@@ -646,7 +631,8 @@ class _CategorySettingsState extends State<_CategorySettings>
       );
 
       // Auto-populate special categories
-      if (_name == 'TV Apps' || _name == 'Non-TV Apps') {
+      if (_name == 'TV Apps' || _name == 'Non-TV Apps' ||
+          _name == localizations.presetTvApps || _name == localizations.presetNonTvApps) {
         try {
           // Find the actual category object using the ID we just got
           final createdCategory = service.categories.firstWhere((c) => c.id == categoryId);
@@ -791,3 +777,18 @@ Widget _listTile(BuildContext context, Widget title, Widget subtitle, {Widget? t
       trailing: trailing,
     )
 );
+
+List<String> _presets(AppLocalizations l) => [
+      l.presetTvApps,
+      l.presetNonTvApps,
+      l.presetMoviesShows,
+      l.presetMusic,
+      l.presetGames,
+      l.presetEntertainment,
+      l.presetLiveTv,
+      l.presetSports,
+      l.presetNews,
+      l.presetTools,
+      l.presetFavorites,
+      l.customPreset,
+    ];
