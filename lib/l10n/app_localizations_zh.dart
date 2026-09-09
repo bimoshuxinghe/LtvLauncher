@@ -818,4 +818,40 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get invalidBackupVersion => '备份文件版本无效';
+
+  @override
+  String get tabHome => '首页';
+
+  @override
+  String get tabApps => '应用';
+
+  @override
+  String get tabInputs => '输入源';
+
+  @override
+  String get allApps => '全部应用';
+
+  @override
+  String get cardSize => '卡片尺寸';
+
+  @override
+  String get cardSizeFollow => '跟随分区设置';
+
+  @override
+  String get cardSizeSmall => '小';
+
+  @override
+  String get cardSizeMedium => '中';
+
+  @override
+  String get cardSizeLarge => '大';
+
+  @override
+  String get featured => '精选';
+
+  @override
+  String get showFeaturedRow => '首页大卡片';
+
+  @override
+  String get showFeaturedRowDescription => '在首页顶部显示一行大尺寸卡片';
 }

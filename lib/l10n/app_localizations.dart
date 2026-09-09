@@ -1684,6 +1684,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid backup file version'**
   String get invalidBackupVersion;
+
+  /// No description provided for @tabHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get tabHome;
+
+  /// No description provided for @tabApps.
+  ///
+  /// In en, this message translates to:
+  /// **'Apps'**
+  String get tabApps;
+
+  /// No description provided for @tabInputs.
+  ///
+  /// In en, this message translates to:
+  /// **'Inputs'**
+  String get tabInputs;
+
+  /// No description provided for @allApps.
+  ///
+  /// In en, this message translates to:
+  /// **'All Apps'**
+  String get allApps;
+
+  /// No description provided for @cardSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Size'**
+  String get cardSize;
+
+  /// No description provided for @cardSizeFollow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow section'**
+  String get cardSizeFollow;
+
+  /// No description provided for @cardSizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get cardSizeSmall;
+
+  /// No description provided for @cardSizeMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get cardSizeMedium;
+
+  /// No description provided for @cardSizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get cardSizeLarge;
+
+  /// No description provided for @featured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get featured;
+
+  /// No description provided for @showFeaturedRow.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured cards'**
+  String get showFeaturedRow;
+
+  /// No description provided for @showFeaturedRowDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Show a row of large cards on the home tab'**
+  String get showFeaturedRowDescription;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

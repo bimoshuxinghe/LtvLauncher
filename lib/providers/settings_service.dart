@@ -51,6 +51,8 @@ const String _appLanguageKey = "app_language";
 const String _showWeatherInStatusBarKey = "show_weather_in_status_bar";
 const String _showWeatherWarningsKey = "show_weather_warnings";
 const String _temperatureUnitKey = "temperature_unit";
+const String _cardSizeKey = "card_size";
+const String _showFeaturedRowKey = "show_featured_row";
 
 const String TEMPERATURE_UNIT_CELSIUS = "celsius";
 const String TEMPERATURE_UNIT_FAHRENHEIT = "fahrenheit";
@@ -76,6 +78,8 @@ const String ACCENT_COLOR_LIME = "AEEA00";
 const String ACCENT_COLOR_AMBER = "FFAB00";
 const String ACCENT_COLOR_ROSE = "FF4081";
 const String ACCENT_COLOR_ICE_BLUE = "80D8FF";
+
+enum CardSize { follow, small, medium, large }
 
 class SettingsService extends ChangeNotifier {
   static final defaultDateFormat = "EEEE d";
@@ -426,5 +430,62 @@ class SettingsService extends ChangeNotifier {
     await _sharedPreferences.setString(_temperatureUnitKey, unit);
     _temperatureUnit = unit;
     notifyListeners();
+  }
+  CardSize get cardSize {
+    final int raw = _sharedPreferences.getInt(_cardSizeKey) ?? 0;
+    return CardSize.values[raw.clamp(0, CardSize.values.length - 1)];
+  }
+
+  Future<void> setCardSize(CardSize size) async {
+    await _sharedPreferences.setInt(_cardSizeKey, size.index);
+    notifyListeners();
+  }
+
+  int columnsForCategory(int categoryColumns) {
+    switch (cardSize) {
+      case CardSize.small:
+        return 8;
+      case CardSize.medium:
+        return 6;
+      case CardSize.large:
+        return 4;
+      case CardSize.follow:
+        return categoryColumns;
+    }
+  }
+
+  double rowHeightForCategory(int categoryRowHeight) {
+    switch (cardSize) {
+      case CardSize.small:
+        return 90;
+      case CardSize.medium:
+        return 110;
+      case CardSize.large:
+        return 150;
+      case CardSize.follow:
+        return categoryRowHeight.toDouble();
+    }
+  }
+
+  /// 首页「精选」大卡片位：是否显示
+  bool get showFeaturedRow => _sharedPreferences.getBool(_showFeaturedRowKey) ?? true;
+
+  Future<void> setShowFeaturedRow(bool show) async {
+    await _sharedPreferences.setBool(_showFeaturedRowKey, show);
+    notifyListeners();
+  }
+
+  /// 首页「精选」大卡片的高度（卡片宽度按 16:9 推算，例如 300 → 533，接近艾蒙顿的 592×333）
+  double get featuredRowHeight {
+    switch (cardSize) {
+      case CardSize.small:
+        return 200;
+      case CardSize.medium:
+        return 280;
+      case CardSize.large:
+        return 380;
+      case CardSize.follow:
+        return 300;
+    }
   }
 }

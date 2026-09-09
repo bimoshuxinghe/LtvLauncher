@@ -33,11 +33,16 @@ class CategoryRow extends StatelessWidget
 
   final bool isFirstSection;
 
+  /// 是否让第一张卡片自动获得焦点。
+  /// 主屏只给首个分区传 true，保证开机焦点落在最上面一行。
+  final bool autofocus;
+
   CategoryRow({
     Key? key,
     required this.category,
     required this.applications,
     this.isFirstSection = false,
+    this.autofocus = true,
   }) : super(key: key);
 
   @override
@@ -63,7 +68,7 @@ class CategoryRow extends StatelessWidget
                   index: index,
                   category: category,
                   application: applications[index],
-                  autofocus: index == 0,
+                  autofocus: autofocus && index == 0,
                   handleUpNavigationToSettings: isFirstSection,
                   isFirstInRow: index == 0,
                   isLastInRow: index == applications.length - 1,

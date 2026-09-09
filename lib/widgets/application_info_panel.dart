@@ -185,7 +185,8 @@ class _ApplicationInfoPanelState extends State<ApplicationInfoPanel>
                        Navigator.of(context).pop(ApplicationInfoPanelResult.none);
                      },
                    ),
-                   if (widget.category != null)
+                   // 虚拟分区（全部应用 / 精选，id < 0）不存在于数据库中，移除按钮没有意义
+                   if (widget.category != null && widget.category!.id >= 0)
                      TextButton(
                        child: Row(
                          children: [

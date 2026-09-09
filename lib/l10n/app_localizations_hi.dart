@@ -818,4 +818,40 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get invalidBackupVersion => 'Invalid backup file version';
+
+  @override
+  String get tabHome => 'Home';
+
+  @override
+  String get tabApps => 'Apps';
+
+  @override
+  String get tabInputs => 'Inputs';
+
+  @override
+  String get allApps => 'All Apps';
+
+  @override
+  String get cardSize => 'Card Size';
+
+  @override
+  String get cardSizeFollow => 'Follow section';
+
+  @override
+  String get cardSizeSmall => 'Small';
+
+  @override
+  String get cardSizeMedium => 'Medium';
+
+  @override
+  String get cardSizeLarge => 'Large';
+
+  @override
+  String get featured => 'Featured';
+
+  @override
+  String get showFeaturedRow => 'Featured cards';
+
+  @override
+  String get showFeaturedRowDescription => 'Show a row of large cards on the home tab';
 }

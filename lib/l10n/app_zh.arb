@@ -364,5 +364,17 @@
             }
         }
     },
-    "invalidBackupVersion": "备份文件版本无效"
+    "invalidBackupVersion": "备份文件版本无效",
+    "tabHome": "首页",
+    "tabApps": "应用",
+    "tabInputs": "输入源",
+    "allApps": "全部应用",
+    "cardSize": "卡片尺寸",
+    "cardSizeFollow": "跟随分区设置",
+    "cardSizeSmall": "小",
+    "cardSizeMedium": "中",
+    "cardSizeLarge": "大",
+    "featured": "精选",
+    "showFeaturedRow": "首页大卡片",
+    "showFeaturedRowDescription": "在首页顶部显示一行大尺寸卡片"
 }

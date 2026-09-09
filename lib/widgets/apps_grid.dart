@@ -35,11 +35,15 @@ class AppsGrid extends StatelessWidget
 
   final bool isFirstSection;
 
+  /// 是否让第一张卡片自动获得焦点（主屏只给首个分区传 true）
+  final bool autofocus;
+
   AppsGrid({
     Key? key,
     required this.category,
     required this.applications,
     this.isFirstSection = false,
+    this.autofocus = true,
   }) : super(key: key);
 
   @override
@@ -67,7 +71,7 @@ class AppsGrid extends StatelessWidget
               index: index,
               category: category,
               application: applications[index],
-              autofocus: index == 0,
+              autofocus: autofocus && index == 0,
               handleUpNavigationToSettings: isFirstSection && index < category.columnsCount,
               isFirstInRow: isFirstInRow,
               isLastInRow: isLastInRow,

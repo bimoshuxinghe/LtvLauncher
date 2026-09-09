@@ -35,6 +35,7 @@ import 'package:flauncher/widgets/settings/interface_settings_page.dart';
 import 'package:flauncher/widgets/settings/general_settings_page.dart';
 import 'package:flauncher/widgets/settings/screensaver_clock_style_page.dart';
 import 'package:flauncher/widgets/settings/themes_page.dart';
+import 'package:flauncher/widgets/settings/card_size_page.dart';
 import 'package:flauncher/widgets/settings/accessibility_page.dart';
 import 'package:flauncher/widgets/settings/backup_restore_page.dart';
 import 'package:flauncher/widgets/settings/app_language_page.dart';
@@ -107,6 +108,8 @@ class _SettingsPanelState extends State<SettingsPanel> {
                       return _FastPageRoute(builder: (_) => const ScreensaverClockStylePage());
                     case ThemesPage.routeName:
                       return _FastPageRoute(builder: (_) => const ThemesPage());
+                    case CardSizePage.routeName:
+                      return _FastPageRoute(builder: (_) => const CardSizePage());
                     case AccentColorPage.routeName:
                       return _FastPageRoute(builder: (_) => AccentColorPage());
                     case BrightnessSettingsPage.routeName:

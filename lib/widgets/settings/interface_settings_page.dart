@@ -1,5 +1,3 @@
-import 'package:flauncher/widgets/settings/themes_page.dart';
-import 'package:flauncher/widgets/settings/themes_page.dart';
 /*
  * FLauncher
  * Copyright (C) 2024 LeanBitLab
@@ -19,13 +17,17 @@ import 'package:flauncher/widgets/settings/themes_page.dart';
  */
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flauncher/l10n/app_localizations.dart';
+import 'card_size_page.dart';
 import 'focusable_settings_tile.dart';
 import 'launcher_sections_panel_page.dart';
 import 'wallpaper_panel_page.dart';
 import 'status_bar_panel_page.dart';
 import 'accent_color_page.dart';
 import 'misc_panel_page.dart';
+import 'themes_page.dart';
+import '../../providers/settings_service.dart';
 
 class InterfaceSettingsPage extends StatelessWidget {
   static const String routeName = "interface_settings_panel";
@@ -70,6 +72,30 @@ class InterfaceSettingsPage extends StatelessWidget {
                   title: Text(localizations.themes, style: Theme.of(context).textTheme.bodyMedium),
                   onPressed: () => Navigator.of(context).pushNamed(ThemesPage.routeName),
                 ),
+                Consumer<SettingsService>(
+                  builder: (context, settingsService, _) => FocusableSettingsTile(
+                    leading: const Icon(Icons.aspect_ratio),
+                    title: Text(localizations.cardSize, style: Theme.of(context).textTheme.bodyMedium),
+                    trailing: Text(
+                      _cardSizeLabel(settingsService.cardSize, localizations),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white54),
+                    ),
+                    onPressed: () => Navigator.of(context).pushNamed(CardSizePage.routeName),
+                  ),
+                ),
+                Consumer<SettingsService>(
+                  builder: (context, settingsService, _) => FocusableSettingsTile(
+                    leading: const Icon(Icons.featured_video_outlined),
+                    title: Text(localizations.showFeaturedRow, style: Theme.of(context).textTheme.bodyMedium),
+                    subtitle: Text(localizations.showFeaturedRowDescription,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white54)),
+                    trailing: Switch(
+                      value: settingsService.showFeaturedRow,
+                      onChanged: (value) => settingsService.setShowFeaturedRow(value),
+                    ),
+                    onPressed: () => settingsService.setShowFeaturedRow(!settingsService.showFeaturedRow),
+                  ),
+                ),
                 FocusableSettingsTile(
                   leading: const Icon(Icons.miscellaneous_services),
                   title: Text(localizations.miscellaneous, style: Theme.of(context).textTheme.bodyMedium),
@@ -81,5 +107,18 @@ class InterfaceSettingsPage extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+String _cardSizeLabel(CardSize size, AppLocalizations localizations) {
+  switch (size) {
+    case CardSize.small:
+      return localizations.cardSizeSmall;
+    case CardSize.medium:
+      return localizations.cardSizeMedium;
+    case CardSize.large:
+      return localizations.cardSizeLarge;
+    case CardSize.follow:
+      return localizations.cardSizeFollow;
   }
 }
