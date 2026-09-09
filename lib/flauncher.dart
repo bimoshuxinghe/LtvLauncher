@@ -26,19 +26,16 @@ import 'package:flauncher/providers/wallpaper_service.dart';
 import 'package:flauncher/widgets/all_apps_page.dart';
 import 'package:flauncher/widgets/apps_grid.dart';
 import 'package:flauncher/widgets/category_row.dart';
-import 'package:flauncher/widgets/featured_carousel.dart';
+import 'package:flauncher/widgets/weather_hero_card.dart';
 import 'package:flauncher/widgets/launcher_alternative_view.dart';
 import 'package:flauncher/widgets/focus_aware_app_bar.dart';
 import 'package:flauncher/widgets/launcher_tab_bar.dart';
 import 'package:flauncher/widgets/tv_inputs_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flauncher/widgets/continue_watching_row.dart';
-import 'package:flauncher/providers/watch_next_service.dart';
 import 'package:flauncher/providers/settings_service.dart';
 import 'package:flauncher/l10n/app_localizations.dart';
 
-import 'models/app.dart';
 import 'models/category.dart';
 
 class FLauncher extends StatefulWidget {
@@ -128,56 +125,39 @@ class _FLauncherState extends State<FLauncher> {
     }
   }
 
-  /// 首页：继续观看 + 艾蒙顿风格大卡片轮播位 + 用户配置的行/网格分区
+  /// 首页（严格对齐艾蒙顿 fragmnet_main.xml）：
+  ///   左上大卡（592×333，永远显示）→ 与标题之间留白 236px → 分类标题 → 横向卡片行
   Widget _homePage(BuildContext context, AppsService appsService) {
-    final SettingsService settingsService = context.watch<SettingsService>();
-    final AppLocalizations localizations = AppLocalizations.of(context)!;
-    final List<App> featured = _featuredApps(appsService);
-
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ContinueWatchingRow(),
-          if (settingsService.showFeaturedRow && featured.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16, bottom: 8),
-                    child: Text(
-                      localizations.featured,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        shadows: const [
-                          Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 8)
-                        ],
-                      ),
-                    ),
+          // 艾蒙顿大卡：顶部居中靠左，占屏宽 ~31%（592/1920），比例 16:9（333/592）
+          Padding(
+            padding: const EdgeInsets.only(left: 24, top: 4),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final double cardWidth =
+                    (constraints.maxWidth * 0.31).clamp(220.0, 460.0);
+                final double cardHeight = cardWidth * 9 / 16;
+                return Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    width: cardWidth,
+                    height: cardHeight,
+                    child: const WeatherHeroCard(),
                   ),
-                  // 艾蒙顿 CardViewPager：592×333 大卡横向轮播（这里按屏宽等比缩放）
-                  FeaturedCarousel(apps: featured.take(6).toList()),
-                ],
-              ),
+                );
+              },
             ),
-          _sections(appsService.launcherSections, settingsService),
+          ),
+          // 艾蒙顿：大卡(y160~493) 到分类标题(y729) 之间的 236px 留白
+          const SizedBox(height: 118),
+          _sections(appsService.launcherSections, context.watch<SettingsService>()),
         ],
       ),
     );
-  }
-
-  /// 按最近使用排序的应用列表（大卡片位用）
-  List<App> _featuredApps(AppsService appsService) {
-    final List<App> featured = appsService.applications.where((app) => !app.hidden).toList()
-      ..sort((a, b) {
-        final DateTime aTime = a.lastLaunchedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-        final DateTime bTime = b.lastLaunchedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-        return bTime.compareTo(aTime);
-      });
-
-    return featured;
   }
 
   /// 把「卡片尺寸」设置套用到分区上（跟随分区时直接用原值，不新建对象）
@@ -199,11 +179,9 @@ class _FLauncherState extends State<FLauncher> {
   }
 
   Widget _sections(List<LauncherSection> sections, SettingsService settingsService) {
-    final watchNextService = Provider.of<WatchNextService>(context, listen: false);
-    final bool continueWatchingActive = settingsService.showContinueWatching && watchNextService.programs.isNotEmpty;
-
     List<Widget> children = [];
-    bool firstCategoryFound = continueWatchingActive || settingsService.showFeaturedRow;
+    // 大卡位已在 _homePage 单独渲染，这里不再算作「首个内容」
+    bool firstCategoryFound = false;
 
     for (var section in sections) {
       final Key sectionKey = Key(section.id.toString());

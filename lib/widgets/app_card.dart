@@ -448,10 +448,11 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
             ),
             if (showAppNames)
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: const EdgeInsets.only(top: 6.0),
+                    // 艾蒙顿 view_app_item：卡片下方应用名 36px ≈ 18sp
                     child: Text(
                       widget.application.name,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 12),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 16),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       textAlign: TextAlign.center,

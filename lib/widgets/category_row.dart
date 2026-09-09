@@ -56,7 +56,7 @@ class CategoryRow extends StatelessWidget
         height: category.rowHeight.toDouble(),
         child: ListView.custom(
           clipBehavior: Clip.none,
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(12),
           scrollDirection: Axis.horizontal,
           childrenDelegate: SliverChildBuilderDelegate(
             childCount: applications.length,
@@ -98,7 +98,7 @@ class CategoryRow extends StatelessWidget
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge!
-                          .copyWith(shadows: [const Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 8)])
+                          .copyWith(fontSize: 18, shadows: [const Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 8)])
                     ),
                     const SizedBox(width: 10),
                     Container(
