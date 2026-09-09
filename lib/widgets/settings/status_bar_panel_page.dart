@@ -118,6 +118,13 @@ class StatusBarPanelPage extends StatelessWidget {
                       settingsService.setTemperatureUnit(next);
                     },
                   ),
+                  FocusableSettingsTile(
+                    leading: const Icon(Icons.location_on_outlined),
+                    title: Text(
+                      "${localizations.weatherCity}: ${settingsService.weatherCityName}",
+                    ),
+                    onPressed: () => settingsService.cycleWeatherCity(),
+                  ),
                   Consumer<WeatherService>(
                     builder: (context, weatherService, _) {
                       if (!weatherService.hasWeather) {

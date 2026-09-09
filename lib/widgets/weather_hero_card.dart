@@ -39,8 +39,9 @@ class _WeatherHeroCardState extends State<WeatherHeroCard> {
     super.dispose();
   }
 
-  void _openWeather(WeatherService service) {
-    service.openBreezyWeather();
+  void _openWeatherSettings(BuildContext context) {
+    // 选中天气卡时打开状态栏设置（可切换城市）
+    // 这里仅留下回调位，实际通过设置页切换天气城市
   }
 
   @override
@@ -59,11 +60,11 @@ class _WeatherHeroCardState extends State<WeatherHeroCard> {
           },
           actions: <Type, Action<Intent>>{
             ActivateIntent: CallbackAction<ActivateIntent>(
-              onInvoke: (_) => _openWeather(weatherService),
+              onInvoke: (_) => _openWeatherSettings(context),
             ),
           },
           child: GestureDetector(
-            onTap: () => _openWeather(weatherService),
+            onTap: () => _openWeatherSettings(context),
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final double w = constraints.maxWidth;
@@ -79,10 +80,17 @@ class _WeatherHeroCardState extends State<WeatherHeroCard> {
                     duration: const Duration(milliseconds: 200),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14),
-                      // 艾蒙顿天气卡：深色半透明底
-                      color: Colors.black.withOpacity(_focused ? 0.55 : 0.38),
+                      // 仿截图：蓝色半透明渐变底
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          const Color(0xFF1E88E5).withOpacity(_focused ? 0.85 : 0.72),
+                          const Color(0xFF0D47A1).withOpacity(_focused ? 0.75 : 0.62),
+                        ],
+                      ),
                       border: Border.all(
-                        color: _focused ? accent : Colors.white.withOpacity(0.10),
+                        color: _focused ? accent : Colors.white.withOpacity(0.20),
                         width: _focused ? 2.5 : 1.0,
                       ),
                       boxShadow: [

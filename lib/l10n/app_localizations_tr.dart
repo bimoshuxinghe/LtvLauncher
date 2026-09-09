@@ -478,6 +478,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get breezyWeatherSetupHint => 'Hava durumu ve yağmur uyarılarını görmek için Breezy Weather\'ı yükleyin ve ayarlarından \'Yerel veri paylaşımı\' / \'Gadgetbridge\' özelliğini etkinleştirin.';
 
   @override
+  String get weatherCity => 'Weather city';
+
+  @override
+  String get noApplications => 'No applications available';
+
+  @override
   String get ok => 'OK';
 
   @override

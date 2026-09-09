@@ -478,6 +478,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get breezyWeatherSetupHint => 'Installez Breezy Weather et activez le \'Partage local des données\' / \'Gadgetbridge\' dans ses paramètres pour afficher la météo et les alertes de pluie.';
 
   @override
+  String get weatherCity => 'Weather city';
+
+  @override
+  String get noApplications => 'No applications available';
+
+  @override
   String get ok => 'OK';
 
   @override

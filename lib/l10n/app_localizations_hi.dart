@@ -478,6 +478,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get breezyWeatherSetupHint => 'मौसम और बारिश की चेतावनी देखने के लिए Breezy Weather इंस्टॉल करें और उसकी सेटिंग्स में \'स्थानीय डेटा साझाकरण\' सक्षम करें।';
 
   @override
+  String get weatherCity => 'Weather city';
+
+  @override
+  String get noApplications => 'No applications available';
+
+  @override
   String get ok => 'OK';
 
   @override

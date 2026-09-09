@@ -478,6 +478,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get breezyWeatherSetupHint => 'Breezy Weather를 설치하고 설정에서 \'로컬 데이터 공유\' / \'Gadgetbridge\'를 활성화하면 날씨 및 강우 경보가 표시됩니다.';
 
   @override
+  String get weatherCity => 'Weather city';
+
+  @override
+  String get noApplications => 'No applications available';
+
+  @override
   String get ok => 'OK';
 
   @override

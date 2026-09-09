@@ -18,6 +18,7 @@
 
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flauncher/widgets/settings/back_button_actions.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +54,21 @@ const String _showWeatherWarningsKey = "show_weather_warnings";
 const String _temperatureUnitKey = "temperature_unit";
 const String _cardSizeKey = "card_size";
 const String _showFeaturedRowKey = "show_featured_row";
+const String _weatherCityCodeKey = "weather_city_code";
+
+/// 天气预设城市（城市名 -> 中国天气网城市代码）
+const Map<String, String> _weatherCityPresets = {
+  "北京": "101010100",
+  "上海": "101020100",
+  "广州": "101280101",
+  "深圳": "101280601",
+  "成都": "101270101",
+  "杭州": "101210101",
+  "武汉": "101200101",
+  "西安": "101110101",
+  "重庆": "101040100",
+  "南京": "101190101",
+};
 
 const String TEMPERATURE_UNIT_CELSIUS = "celsius";
 const String TEMPERATURE_UNIT_FAHRENHEIT = "fahrenheit";
@@ -114,6 +130,7 @@ class SettingsService extends ChangeNotifier {
   late bool _showWeatherInStatusBar;
   late bool _showWeatherWarnings;
   late String _temperatureUnit;
+  late String _weatherCityCode;
 
   bool get appHighlightAnimationEnabled => _appHighlightAnimationEnabled;
 
@@ -157,6 +174,15 @@ class SettingsService extends ChangeNotifier {
   bool get showWeatherWarnings => _showWeatherWarnings;
   String get temperatureUnit => _temperatureUnit;
   bool get useFahrenheit => _temperatureUnit == TEMPERATURE_UNIT_FAHRENHEIT;
+  String get weatherCityCode => _weatherCityCode;
+
+  /// 当前天气城市名称（用于 UI 展示）
+  String get weatherCityName {
+    return _weatherCityPresets.entries
+            .firstWhereOrNull((e) => e.value == _weatherCityCode)
+            ?.key ??
+        _weatherCityCode;
+  }
 
   String get appLanguage => _appLanguage;
 
@@ -210,6 +236,7 @@ class SettingsService extends ChangeNotifier {
     _showWeatherInStatusBar = _sharedPreferences.getBool(_showWeatherInStatusBarKey) ?? true;
     _showWeatherWarnings = _sharedPreferences.getBool(_showWeatherWarningsKey) ?? true;
     _temperatureUnit = _sharedPreferences.getString(_temperatureUnitKey) ?? TEMPERATURE_UNIT_CELSIUS;
+    _weatherCityCode = _sharedPreferences.getString(_weatherCityCodeKey) ?? _weatherCityPresets.values.first;
     notifyListeners();
   }
 
@@ -243,6 +270,7 @@ class SettingsService extends ChangeNotifier {
       _showWeatherInStatusBarKey: _showWeatherInStatusBar,
       _showWeatherWarningsKey: _showWeatherWarnings,
       _temperatureUnitKey: _temperatureUnit,
+      _weatherCityCodeKey: _weatherCityCode,
     };
   }
 
@@ -432,6 +460,21 @@ class SettingsService extends ChangeNotifier {
     _temperatureUnit = unit;
     notifyListeners();
   }
+
+  Future<void> setWeatherCityCode(String cityCode) async {
+    await _sharedPreferences.setString(_weatherCityCodeKey, cityCode);
+    _weatherCityCode = cityCode;
+    notifyListeners();
+  }
+
+  /// 切换到下一个预设天气城市
+  Future<void> cycleWeatherCity() async {
+    final cities = _weatherCityPresets.values.toList();
+    final currentIndex = cities.indexOf(_weatherCityCode);
+    final nextIndex = (currentIndex + 1) % cities.length;
+    await setWeatherCityCode(cities[nextIndex]);
+  }
+
   CardSize get cardSize {
     final int raw = _sharedPreferences.getInt(_cardSizeKey) ?? 0;
     return CardSize.values[raw.clamp(0, CardSize.values.length - 1)];

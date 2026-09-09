@@ -23,9 +23,10 @@ import 'package:flauncher/providers/apps_service.dart';
 import 'package:flauncher/providers/launcher_state.dart';
 import 'package:flauncher/providers/tv_inputs_service.dart';
 import 'package:flauncher/providers/wallpaper_service.dart';
+import 'package:collection/collection.dart';
 import 'package:flauncher/widgets/all_apps_page.dart';
-import 'package:flauncher/widgets/apps_grid.dart';
-import 'package:flauncher/widgets/category_row.dart';
+import 'package:flauncher/widgets/favorite_apps_row.dart';
+import 'package:flauncher/widgets/time_hero_card.dart';
 import 'package:flauncher/widgets/weather_hero_card.dart';
 import 'package:flauncher/widgets/launcher_alternative_view.dart';
 import 'package:flauncher/widgets/focus_aware_app_bar.dart';
@@ -33,7 +34,6 @@ import 'package:flauncher/widgets/launcher_tab_bar.dart';
 import 'package:flauncher/widgets/tv_inputs_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flauncher/providers/settings_service.dart';
 import 'package:flauncher/l10n/app_localizations.dart';
 
 import 'models/category.dart';
@@ -125,110 +125,54 @@ class _FLauncherState extends State<FLauncher> {
     }
   }
 
-  /// 首页（严格对齐艾蒙顿 fragmnet_main.xml）：
-  ///   左上大卡（592×333，永远显示）→ 与标题之间留白 236px → 分类标题 → 横向卡片行
+  /// 首页：顶部左右两大卡（天气 / 时间），下方「常用应用」横向卡片行。
   Widget _homePage(BuildContext context, AppsService appsService) {
-    return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // 艾蒙顿大卡：顶部居中靠左，占屏宽 ~31%（592/1920），比例 16:9（333/592）
-          Padding(
-            padding: const EdgeInsets.only(left: 24, top: 4),
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final double cardWidth =
-                    (constraints.maxWidth * 0.31).clamp(220.0, 460.0);
-                final double cardHeight = cardWidth * 9 / 16;
-                return Align(
-                  alignment: Alignment.centerLeft,
-                  child: SizedBox(
+    final Category? favoritesCategory = appsService.categories.firstWhereOrNull(
+      (category) => category.name == 'Favorites' || category.name == '常用应用',
+    );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // 顶部双大卡：左天气，右时间
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final double maxWidth = constraints.maxWidth;
+              final double cardWidth = ((maxWidth - 24) / 2).clamp(220.0, 560.0);
+              final double cardHeight = cardWidth * 9 / 16;
+              return Row(
+                children: [
+                  SizedBox(
                     width: cardWidth,
                     height: cardHeight,
                     child: const WeatherHeroCard(),
                   ),
-                );
-              },
-            ),
+                  const Spacer(),
+                  SizedBox(
+                    width: cardWidth,
+                    height: cardHeight,
+                    child: const TimeHeroCard(),
+                  ),
+                ],
+              );
+            },
           ),
-          // 艾蒙顿：大卡(y160~493) 到分类标题(y729) 之间的 236px 留白
-          const SizedBox(height: 118),
-          _sections(appsService.launcherSections, context.watch<SettingsService>()),
-        ],
-      ),
+        ),
+        const SizedBox(height: 32),
+        // 常用应用行：按遥控器下键切到「应用」页看全部
+        if (favoritesCategory != null)
+          FavoriteAppsRow(
+            category: favoritesCategory,
+            applications: favoritesCategory.applications,
+            onShowAllApps: () => setState(() => _selectedTabIndex = 1),
+          )
+        else
+          const Spacer(),
+        const Spacer(),
+      ],
     );
-  }
-
-  /// 把「卡片尺寸」设置套用到分区上（跟随分区时直接用原值，不新建对象）
-  Category _applyCardSize(Category source, SettingsService settingsService) {
-    if (settingsService.cardSize == CardSize.follow) {
-      return source;
-    }
-
-    return Category.withApplications(
-      name: source.name,
-      id: source.id,
-      order: source.order,
-      columnsCount: settingsService.columnsForCategory(source.columnsCount),
-      rowHeight: settingsService.rowHeightForCategory(source.rowHeight).round(),
-      sort: source.sort,
-      type: source.type,
-      applications: source.applications,
-    );
-  }
-
-  Widget _sections(List<LauncherSection> sections, SettingsService settingsService) {
-    List<Widget> children = [];
-    // 大卡位已在 _homePage 单独渲染，这里不再算作「首个内容」
-    bool firstCategoryFound = false;
-
-    for (var section in sections) {
-      final Key sectionKey = Key(section.id.toString());
-
-      if (section is LauncherSpacer) {
-        children.add(SizedBox(key: sectionKey, height: section.height.toDouble()));
-        continue;
-      }
-
-      Category category = _applyCardSize(section as Category, settingsService);
-      Widget categoryWidget;
-
-      // Pass isFirstSection only to the first category found
-      bool isFirstSection = !firstCategoryFound;
-      if (isFirstSection) firstCategoryFound = true;
-
-      switch (category.type) {
-        case CategoryType.row:
-          categoryWidget = CategoryRow(
-              key: sectionKey,
-              category: category,
-              applications: category.applications,
-              isFirstSection: isFirstSection,
-              autofocus: isFirstSection
-          );
-          break; // Added break
-        case CategoryType.grid:
-          categoryWidget = AppsGrid(
-              key: sectionKey,
-              category: category,
-              applications: category.applications,
-              isFirstSection: isFirstSection,
-              autofocus: isFirstSection,
-              // 瀑布流：首页网格分区最多两行，超出的收进「更多」
-              maxRows: 2,
-              onSeeAll: () => setState(() => _selectedTabIndex = 1)
-          );
-          break; // Added break
-      }
-
-      children.add(Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: categoryWidget
-      ));
-    }
-
-    return Column(children: children);
   }
 
   Widget _wallpaper(BuildContext context, WallpaperService wallpaperService) {

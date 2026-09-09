@@ -51,6 +51,9 @@ class AppCard extends StatefulWidget
   /// 卡片宽高比（默认 16:9）。首页瀑布流的大卡片位可以用更宽的比例。
   final double aspectRatio;
 
+  /// 按下遥控器下键时的回调。首页常用应用行用它切到「全部应用」页。
+  final VoidCallback? onArrowDown;
+
   const AppCard({
     super.key,
     required this.application,
@@ -64,6 +67,7 @@ class AppCard extends StatefulWidget
     this.isFirstInRow = false,
     this.isLastInRow = false,
     this.aspectRatio = 16 / 9,
+    this.onArrowDown,
   });
 
   @override
@@ -694,6 +698,9 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
         if (!_bumpController.isAnimating) {
           _bumpController.forward(from: 0.0);
         }
+        return KeyEventResult.handled;
+      } else if (key == LogicalKeyboardKey.arrowDown && widget.onArrowDown != null) {
+        widget.onArrowDown!();
         return KeyEventResult.handled;
       }
     }

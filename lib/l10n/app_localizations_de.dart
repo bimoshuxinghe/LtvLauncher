@@ -478,6 +478,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get breezyWeatherSetupHint => 'Installieren Sie Breezy Weather und aktivieren Sie \'Lokale Datenfreigabe\' / \'Gadgetbridge\' in den Einstellungen, um Wetter und Regenwarnungen anzuzeigen.';
 
   @override
+  String get weatherCity => 'Weather city';
+
+  @override
+  String get noApplications => 'No applications available';
+
+  @override
   String get ok => 'OK';
 
   @override

@@ -1022,8 +1022,20 @@ abstract class AppLocalizations {
   /// No description provided for @breezyWeatherSetupHint.
   ///
   /// In en, this message translates to:
-  /// **'Install Breezy Weather and enable \'Local data sharing\' / \'Gadgetbridge\' in its settings to see weather and rain warnings.'**
+  /// **'Weather data is provided by Weather.com.cn. Ensure the device has Internet access.'**
   String get breezyWeatherSetupHint;
+
+  /// No description provided for @weatherCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather city'**
+  String get weatherCity;
+
+  /// No description provided for @noApplications.
+  ///
+  /// In en, this message translates to:
+  /// **'No applications available'**
+  String get noApplications;
 
   /// No description provided for @ok.
   ///

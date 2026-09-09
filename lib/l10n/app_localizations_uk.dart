@@ -478,6 +478,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get breezyWeatherSetupHint => 'Встановіть Breezy Weather та увімкніть \'Локальний обмін даними\' / \'Gadgetbridge\' у налаштуваннях для перегляду погоди та попереджень про дощ.';
 
   @override
+  String get weatherCity => 'Weather city';
+
+  @override
+  String get noApplications => 'No applications available';
+
+  @override
   String get ok => 'OK';
 
   @override

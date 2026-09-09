@@ -475,7 +475,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fahrenheit => '华氏度 (°F)';
 
   @override
-  String get breezyWeatherSetupHint => '安装 Breezy Weather 并在其设置中开启「本地数据共享」/「Gadgetbridge」以显示天气和降雨预警。';
+  String get breezyWeatherSetupHint => '天气数据来自中国天气网（weather.com.cn），请确保设备已联网。';
+
+  @override
+  String get weatherCity => '天气城市';
+
+  @override
+  String get noApplications => '没有可用的应用';
 
   @override
   String get ok => '确定';

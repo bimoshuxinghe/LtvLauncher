@@ -475,7 +475,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fahrenheit => 'Fahrenheit (°F)';
 
   @override
-  String get breezyWeatherSetupHint => 'Install Breezy Weather and enable \'Local data sharing\' / \'Gadgetbridge\' in its settings to see weather and rain warnings.';
+  String get breezyWeatherSetupHint => 'Weather data is provided by Weather.com.cn. Ensure the device has Internet access.';
+
+  @override
+  String get weatherCity => 'Weather city';
+
+  @override
+  String get noApplications => 'No applications available';
 
   @override
   String get ok => 'OK';

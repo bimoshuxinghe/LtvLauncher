@@ -478,6 +478,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get breezyWeatherSetupHint => 'قم بتثبيت تطبيق Breezy Weather وتفعيل \'مشاركة البيانات المحلية\' في إعداداته لعرض الطقس وتحذيرات الأمطار.';
 
   @override
+  String get weatherCity => 'Weather city';
+
+  @override
+  String get noApplications => 'No applications available';
+
+  @override
   String get ok => 'OK';
 
   @override

@@ -1,5 +1,4 @@
 import 'package:flauncher/l10n/app_localizations.dart';
-import 'package:flauncher/models/weather_data.dart';
 import 'package:flauncher/providers/settings_service.dart';
 import 'package:flauncher/providers/weather_service.dart';
 import 'package:flutter/material.dart';

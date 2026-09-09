@@ -162,6 +162,19 @@ class WeatherData {
 
   IconData getConditionIcon({bool isWarning = false}) {
     final code = isWarning ? (warningConditionCode ?? currentConditionCode) : currentConditionCode;
+
+    // 优先按中文天气描述匹配图标（国内天气 API 返回中文）
+    if (currentCondition != null && currentCondition!.isNotEmpty) {
+      final w = currentCondition!.toLowerCase();
+      if (w.contains('晴')) return Icons.wb_sunny_outlined;
+      if (w.contains('多云')) return Icons.wb_cloudy_outlined;
+      if (w.contains('阴')) return Icons.cloud_outlined;
+      if (w.contains('雨')) return Icons.grain_outlined;
+      if (w.contains('雪') || w.contains('冰雹')) return Icons.ac_unit_outlined;
+      if (w.contains('雷') || w.contains('暴')) return Icons.flash_on_outlined;
+      if (w.contains('雾') || w.contains('霾')) return Icons.waves_outlined;
+    }
+
     if (code == null) return Icons.cloud_outlined;
 
     if (code == 800) return Icons.wb_sunny_outlined;
