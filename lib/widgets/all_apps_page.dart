@@ -1,3 +1,4 @@
+import 'package:flauncher/l10n/app_localizations.dart';
 import 'package:flauncher/models/app.dart';
 import 'package:flauncher/models/category.dart';
 import 'package:flauncher/providers/apps_service.dart';
@@ -22,7 +23,7 @@ class AllAppsPage extends StatelessWidget {
       ..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
 
     final Category virtualCategory = Category.withApplications(
-      name: '',
+      name: AppLocalizations.of(context)!.allApps,
       id: -1,
       type: CategoryType.grid,
       columnsCount: settingsService.columnsForCategory(Category.ColumnsCount),
