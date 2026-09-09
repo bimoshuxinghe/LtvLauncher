@@ -376,5 +376,6 @@
     "cardSizeLarge": "Large",
     "featured": "Featured",
     "showFeaturedRow": "Featured cards",
-    "showFeaturedRowDescription": "Show a row of large cards on the home tab"
+    "showFeaturedRowDescription": "Show a row of large cards on the home tab",
+    "more": "More"
 }

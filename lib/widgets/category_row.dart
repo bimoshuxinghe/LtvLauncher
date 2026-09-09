@@ -63,7 +63,8 @@ class CategoryRow extends StatelessWidget
             findChildIndexCallback: _findChildIndex,
             (context, index) => Padding(
                 key: Key(applications[index].packageName),
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                // 卡片间距 20，与网格分区一致
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: AppCard(
                   index: index,
                   category: category,
@@ -99,12 +100,19 @@ class CategoryRow extends StatelessWidget
                           .titleLarge!
                           .copyWith(shadows: [const Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 8)])
                     ),
-                    const SizedBox(width: 8),
-                    Text('•  ${applications.length}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Colors.white54)
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.12),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text('${applications.length}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(color: Colors.white70, fontSize: 12, height: 1.2)
+                      ),
                     ),
                   ],
                 ),

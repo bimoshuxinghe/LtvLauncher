@@ -212,5 +212,6 @@
     "temperatureUnit": "Sıcaklık Birimi",
     "celsius": "Celsius (°C)",
     "fahrenheit": "Fahrenheit (°F)",
-    "breezyWeatherSetupHint": "Hava durumu ve yağmur uyarılarını görmek için Breezy Weather'ı yükleyin ve ayarlarından 'Yerel veri paylaşımı' / 'Gadgetbridge' özelliğini etkinleştirin."
+    "breezyWeatherSetupHint": "Hava durumu ve yağmur uyarılarını görmek için Breezy Weather'ı yükleyin ve ayarlarından 'Yerel veri paylaşımı' / 'Gadgetbridge' özelliğini etkinleştirin.",
+    "more": "Daha fazla"
 }

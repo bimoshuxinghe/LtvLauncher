@@ -212,5 +212,6 @@
     "temperatureUnit": "Temperatureinheit",
     "celsius": "Celsius (°C)",
     "fahrenheit": "Fahrenheit (°F)",
-    "breezyWeatherSetupHint": "Installieren Sie Breezy Weather und aktivieren Sie 'Lokale Datenfreigabe' / 'Gadgetbridge' in den Einstellungen, um Wetter und Regenwarnungen anzuzeigen."
+    "breezyWeatherSetupHint": "Installieren Sie Breezy Weather und aktivieren Sie 'Lokale Datenfreigabe' / 'Gadgetbridge' in den Einstellungen, um Wetter und Regenwarnungen anzuzeigen.",
+    "more": "Mehr"
 }

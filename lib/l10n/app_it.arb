@@ -212,5 +212,6 @@
     "temperatureUnit": "Unità di temperatura",
     "celsius": "Celsius (°C)",
     "fahrenheit": "Fahrenheit (°F)",
-    "breezyWeatherSetupHint": "Installa Breezy Weather e abilita 'Condivisione dati locali' / 'Gadgetbridge' nelle impostazioni per visualizzare meteo e avvisi di pioggia."
+    "breezyWeatherSetupHint": "Installa Breezy Weather e abilita 'Condivisione dati locali' / 'Gadgetbridge' nelle impostazioni per visualizzare meteo e avvisi di pioggia.",
+    "more": "Altro"
 }

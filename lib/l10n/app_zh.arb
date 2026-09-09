@@ -376,5 +376,6 @@
     "cardSizeLarge": "大",
     "featured": "精选",
     "showFeaturedRow": "首页大卡片",
-    "showFeaturedRowDescription": "在首页顶部显示一行大尺寸卡片"
+    "showFeaturedRowDescription": "在首页顶部显示一行大尺寸卡片",
+    "more": "更多"
 }

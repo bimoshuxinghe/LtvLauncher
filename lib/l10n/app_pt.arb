@@ -212,5 +212,6 @@
     "temperatureUnit": "Unidade de temperatura",
     "celsius": "Celsius (°C)",
     "fahrenheit": "Fahrenheit (°F)",
-    "breezyWeatherSetupHint": "Instale o Breezy Weather e ative o 'Compartilhamento local de dados' / 'Gadgetbridge' nas configurações para ver o clima e alertas de chuva."
+    "breezyWeatherSetupHint": "Instale o Breezy Weather e ative o 'Compartilhamento local de dados' / 'Gadgetbridge' nas configurações para ver o clima e alertas de chuva.",
+    "more": "Mais"
 }

@@ -854,4 +854,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get showFeaturedRowDescription => 'Show a row of large cards on the home tab';
+
+  @override
+  String get more => 'Ещё';
 }

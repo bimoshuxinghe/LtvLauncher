@@ -26,6 +26,7 @@ import 'package:flauncher/providers/wallpaper_service.dart';
 import 'package:flauncher/widgets/all_apps_page.dart';
 import 'package:flauncher/widgets/apps_grid.dart';
 import 'package:flauncher/widgets/category_row.dart';
+import 'package:flauncher/widgets/featured_carousel.dart';
 import 'package:flauncher/widgets/launcher_alternative_view.dart';
 import 'package:flauncher/widgets/focus_aware_app_bar.dart';
 import 'package:flauncher/widgets/launcher_tab_bar.dart';
@@ -127,9 +128,11 @@ class _FLauncherState extends State<FLauncher> {
     }
   }
 
-  /// 首页：继续观看 + 精选大卡片位 + 用户配置的行/网格分区
+  /// 首页：继续观看 + 艾蒙顿风格大卡片轮播位 + 用户配置的行/网格分区
   Widget _homePage(BuildContext context, AppsService appsService) {
     final SettingsService settingsService = context.watch<SettingsService>();
+    final AppLocalizations localizations = AppLocalizations.of(context)!;
+    final List<App> featured = _featuredApps(appsService);
 
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
@@ -137,17 +140,36 @@ class _FLauncherState extends State<FLauncher> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ContinueWatchingRow(),
-          if (settingsService.showFeaturedRow) _featuredRow(context, appsService, settingsService),
+          if (settingsService.showFeaturedRow && featured.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, bottom: 8),
+                    child: Text(
+                      localizations.featured,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        shadows: const [
+                          Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 8)
+                        ],
+                      ),
+                    ),
+                  ),
+                  // 艾蒙顿 CardViewPager：592×333 大卡横向轮播（这里按屏宽等比缩放）
+                  FeaturedCarousel(apps: featured.take(6).toList()),
+                ],
+              ),
+            ),
           _sections(appsService.launcherSections, settingsService),
         ],
       ),
     );
   }
 
-  /// 艾蒙顿风格的「大卡片位」：按最近使用排序，16:9 横幅，高度约为普通行的一倍多
-  Widget _featuredRow(BuildContext context, AppsService appsService, SettingsService settingsService) {
-    final AppLocalizations localizations = AppLocalizations.of(context)!;
-
+  /// 按最近使用排序的应用列表（大卡片位用）
+  List<App> _featuredApps(AppsService appsService) {
     final List<App> featured = appsService.applications.where((app) => !app.hidden).toList()
       ..sort((a, b) {
         final DateTime aTime = a.lastLaunchedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
@@ -155,29 +177,7 @@ class _FLauncherState extends State<FLauncher> {
         return bTime.compareTo(aTime);
       });
 
-    if (featured.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
-    final List<App> shown = featured.take(10).toList();
-
-    final Category category = Category.withApplications(
-      name: localizations.featured,
-      id: -2,
-      type: CategoryType.row,
-      columnsCount: 1,
-      rowHeight: settingsService.featuredRowHeight.round(),
-      applications: shown,
-    );
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: CategoryRow(
-        category: category,
-        applications: shown,
-        autofocus: false,
-      ),
-    );
+    return featured;
   }
 
   /// 把「卡片尺寸」设置套用到分区上（跟随分区时直接用原值，不新建对象）
@@ -236,7 +236,10 @@ class _FLauncherState extends State<FLauncher> {
               category: category,
               applications: category.applications,
               isFirstSection: isFirstSection,
-              autofocus: isFirstSection
+              autofocus: isFirstSection,
+              // 瀑布流：首页网格分区最多两行，超出的收进「更多」
+              maxRows: 2,
+              onSeeAll: () => setState(() => _selectedTabIndex = 1)
           );
           break; // Added break
       }
@@ -280,6 +283,26 @@ class _FLauncherState extends State<FLauncher> {
                 Colors.black.withOpacity(0.15),
                 Colors.black.withOpacity(0.45),
               ],
+            ),
+          ),
+        ),
+        // 艾蒙顿风格：底部额外压一层渐变（对应其 450px 高的底部遮罩），
+        // 保证最下面一行卡片的文字可读
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: IgnorePointer(
+            child: Container(
+              height: MediaQuery.sizeOf(context).height * 0.42,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.55),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

@@ -854,4 +854,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get showFeaturedRowDescription => '在首页顶部显示一行大尺寸卡片';
+
+  @override
+  String get more => '更多';
 }

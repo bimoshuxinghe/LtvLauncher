@@ -185,7 +185,8 @@ class SettingsService extends ChangeNotifier {
     _appKeyClickEnabled = _sharedPreferences.getBool(_appKeyClickEnabledKey) ?? true;
     _autoHideAppBarEnabled = _sharedPreferences.getBool(_autoHideAppBarKey) ?? false;
     _showCategoryTitles = _sharedPreferences.getBool(_showCategoryTitlesKey) ?? true;
-    _showAppNamesBelowIcons = _sharedPreferences.getBool(_showAppNamesBelowIconsKey) ?? false;
+    // 艾蒙顿/当贝风格：应用名默认显示在卡片下方
+    _showAppNamesBelowIcons = _sharedPreferences.getBool(_showAppNamesBelowIconsKey) ?? true;
     _themes = _sharedPreferences.getString(_themesKey) ?? "modern";
     _hideHighlightOutlineOnHomescreen = _sharedPreferences.getBool(_hideHighlightOutlineOnHomescreenKey) ?? false;
     _appSelectorTransitionAnimationEnabled = _sharedPreferences.getBool(_appSelectorTransitionAnimationEnabledKey) ?? true;

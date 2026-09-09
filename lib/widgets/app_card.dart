@@ -48,6 +48,9 @@ class AppCard extends StatefulWidget
   final bool isFirstInRow;
   final bool isLastInRow;
 
+  /// 卡片宽高比（默认 16:9）。首页瀑布流的大卡片位可以用更宽的比例。
+  final double aspectRatio;
+
   const AppCard({
     super.key,
     required this.application,
@@ -60,6 +63,7 @@ class AppCard extends StatefulWidget
     this.handleUpNavigationToSettings = false,
     this.isFirstInRow = false,
     this.isLastInRow = false,
+    this.aspectRatio = 16 / 9,
   });
 
   @override
@@ -90,6 +94,9 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
   ]).animate(_bumpController);
 
   AppsService? _appsService;
+
+  /// 卡片下方是否单独显示应用名（用于决定卡片内是否画底部名称条）
+  bool _showAppNamesBelowIcons = false;
 
   @override
   void initState() {
@@ -170,6 +177,7 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final bool showAppNames = context.select<SettingsService, bool>((s) => s.showAppNamesBelowIcons);
+    _showAppNamesBelowIcons = showAppNames;
     final String themes = context.select<SettingsService, String>((s) => s.themes);
     final bool hideHighlightOutlineOnHomescreen = context.select<SettingsService, bool>((s) => s.hideHighlightOutlineOnHomescreen);
     final bool appSelectorTransitionAnimationEnabled = context.select<SettingsService, bool>((s) => s.appSelectorTransitionAnimationEnabled);
@@ -192,8 +200,9 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
         break;
       case 'modern':
       default:
-        borderRadius = BorderRadius.circular(8);
-        innerBorderRadius = BorderRadius.circular(6);
+        // 瀑布流风格：更圆润的卡片，接近当贝/艾蒙顿桌面的观感
+        borderRadius = BorderRadius.circular(14);
+        innerBorderRadius = BorderRadius.circular(12);
         break;
     }
 
@@ -223,7 +232,7 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
               children: [
                 Flexible(
                   child: AspectRatio(
-                    aspectRatio: 16 / 9,
+                    aspectRatio: widget.aspectRatio,
                     child: RepaintBoundary(
                       child: LayoutBuilder(
                         builder: (context, constraints) {
@@ -490,30 +499,69 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
             );
           }
           else {
-            return Padding(
-              padding: const EdgeInsets.all(8),
-              child: Row(
+            // 瀑布流卡片：图标居中 + 底部渐变名称条（当贝桌面风格）
+            return Ink(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.white.withOpacity(0.10),
+                    Colors.white.withOpacity(0.03),
+                  ],
+                ),
+              ),
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Expanded(
-                    flex: 2,
-                    child: Ink.image(
-                      image: record.$2,
-                      height: double.maxFinite,
-                      onImageError: (e, s) => debugPrint('AppCard icon image error: $e'),
+                  Center(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        // 图标占卡片高度的 42%，宽度自适应
+                        final double iconSize = (constraints.maxHeight * 0.42).clamp(16.0, 96.0);
+                        return SizedBox(
+                          width: iconSize,
+                          height: iconSize,
+                          child: Ink.image(
+                            image: record.$2,
+                            fit: BoxFit.contain,
+                            onImageError: (e, s) => debugPrint('AppCard icon image error: $e'),
+                          ),
+                        );
+                      },
                     ),
                   ),
-                  Flexible(
-                    flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        app.name,
-                        style: Theme.of(context).textTheme.bodySmall,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
+                  if (!_showAppNamesBelowIcons)
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(10, 22, 10, 8),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.black.withOpacity(0.75),
+                              Colors.black.withOpacity(0.35),
+                              Colors.transparent,
+                            ],
+                            stops: const [0.0, 0.55, 1.0],
+                          ),
+                        ),
+                        child: Text(
+                          app.name,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
             );

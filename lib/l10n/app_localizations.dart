@@ -1756,6 +1756,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show a row of large cards on the home tab'**
   String get showFeaturedRowDescription;
+
+  /// No description provided for @more.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get more;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

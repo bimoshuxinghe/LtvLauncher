@@ -18,9 +18,11 @@
 
 import 'dart:math';
 
+import 'package:flauncher/l10n/app_localizations.dart';
 import 'package:flauncher/providers/apps_service.dart';
 import 'package:flauncher/widgets/app_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../models/app.dart';
@@ -38,16 +40,33 @@ class AppsGrid extends StatelessWidget
   /// 是否让第一张卡片自动获得焦点（主屏只给首个分区传 true）
   final bool autofocus;
 
+  /// 首页瀑布流：网格最多显示几行，超出的折叠到「更多」卡片里（null = 全部显示）
+  final int? maxRows;
+
+  /// 点击「更多」卡片时的回调（一般切到「应用」页看全部）
+  final VoidCallback? onSeeAll;
+
   AppsGrid({
     Key? key,
     required this.category,
     required this.applications,
     this.isFirstSection = false,
     this.autofocus = true,
+    this.maxRows,
+    this.onSeeAll,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // 折叠：超过 maxRows 行时，最后留一格放「更多」卡片
+    final int? rows = maxRows;
+    int? visibleCount;
+    if (rows != null && applications.length > rows * category.columnsCount) {
+      visibleCount = rows * category.columnsCount - 1;
+    }
+    final bool collapsed = visibleCount != null;
+    final int shownCount = visibleCount ?? applications.length;
+
     Widget categoryContent;
     if (applications.isEmpty) {
       categoryContent = categoryContainerEmptyState(context);
@@ -58,11 +77,19 @@ class AppsGrid extends StatelessWidget
         primary: false,
         shrinkWrap: true,
         gridDelegate: _buildSliverGridDelegate(),
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         childrenDelegate: SliverChildBuilderDelegate(
-          childCount: applications.length,
+          childCount: shownCount + (collapsed ? 1 : 0),
           findChildIndexCallback: _findChildIndex,
           (context, index) {
+            // 折叠态的最后一格：更多
+            if (collapsed && index == shownCount) {
+              return _SeeAllCard(
+                remaining: applications.length - shownCount,
+                onTap: onSeeAll,
+              );
+            }
+
             final isFirstInRow = index % category.columnsCount == 0;
             final isLastInRow = index % category.columnsCount == category.columnsCount - 1 || index == applications.length - 1;
 
@@ -75,9 +102,10 @@ class AppsGrid extends StatelessWidget
               handleUpNavigationToSettings: isFirstSection && index < category.columnsCount,
               isFirstInRow: isFirstInRow,
               isLastInRow: isLastInRow,
-              onMove: (direction) => _onMove(context, direction, applications[index]),
-              onMoveEnd: () => _saveOrder(context),
-              onMoveCancel: () => _cancelOrder(context),
+              // 折叠态下禁用拖动排序，避免显示顺序与真实顺序不一致
+              onMove: collapsed ? (_) {} : (direction) => _onMove(context, direction, applications[index]),
+              onMoveEnd: collapsed ? () {} : () => _saveOrder(context),
+              onMoveCancel: collapsed ? () {} : () => _cancelOrder(context),
             );
           }
         )
@@ -101,12 +129,19 @@ class AppsGrid extends StatelessWidget
                           .titleLarge!
                           .copyWith(shadows: [const Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 8)])
                     ),
-                    const SizedBox(width: 8),
-                    Text('•  ${applications.length}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Colors.white54)
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.12),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text('${applications.length}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(color: Colors.white70, fontSize: 12, height: 1.2)
+                      ),
                     ),
                   ],
                 ),
@@ -180,8 +215,125 @@ class AppsGrid extends StatelessWidget
   SliverGridDelegate _buildSliverGridDelegate() => SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: category.columnsCount,
         childAspectRatio: 16 / 9,
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
+        // 艾蒙顿/当贝风格：卡片间距 20（1080p 基准下等于艾蒙顿的 40px）
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
       );
 
+}
+
+/// 瀑布流分区被折叠时，末尾的「更多」卡片（点击去看全部应用）
+class _SeeAllCard extends StatefulWidget {
+  final int remaining;
+  final VoidCallback? onTap;
+
+  const _SeeAllCard({required this.remaining, this.onTap});
+
+  @override
+  State<_SeeAllCard> createState() => _SeeAllCardState();
+}
+
+class _SeeAllCardState extends State<_SeeAllCard> {
+  late final FocusNode _focusNode;
+  bool _focused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode(debugLabel: 'see_all_card');
+    _focusNode.addListener(_onFocusChange);
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  void _onFocusChange() => setState(() => _focused = _focusNode.hasFocus);
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final Color accent = theme.colorScheme.primary;
+    final String more = AppLocalizations.of(context)!.more;
+
+    return FocusableActionDetector(
+      focusNode: _focusNode,
+      onShowFocusHighlight: (value) => setState(() => _focused = value),
+      shortcuts: const {
+        SingleActivator(LogicalKeyboardKey.select): ActivateIntent(),
+        SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
+        SingleActivator(LogicalKeyboardKey.gameButtonA): ActivateIntent(),
+      },
+      actions: <Type, Action<Intent>>{
+        ActivateIntent: CallbackAction<ActivateIntent>(
+          onInvoke: (_) => widget.onTap?.call(),
+        ),
+      },
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedScale(
+          scale: _focused ? 1.05 : 1.0,
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeOutCubic,
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(14),
+                color: Colors.white.withOpacity(_focused ? 0.16 : 0.08),
+                border: Border.all(
+                  color: _focused ? accent : Colors.white.withOpacity(0.25),
+                  width: _focused ? 2.5 : 1.2,
+                ),
+                boxShadow: _focused
+                    ? [
+                        BoxShadow(
+                          color: accent.withOpacity(0.35),
+                          blurRadius: 16,
+                          spreadRadius: 1,
+                        ),
+                      ]
+                    : null,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.apps_rounded,
+                    size: 34,
+                    color: Colors.white.withOpacity(0.85),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    more,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: Colors.white.withOpacity(0.85),
+                      fontWeight: FontWeight.w600,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  if (widget.remaining > 0)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(
+                        '+${widget.remaining}',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: Colors.white.withOpacity(0.55),
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

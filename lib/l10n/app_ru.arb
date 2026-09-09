@@ -212,5 +212,6 @@
     "temperatureUnit": "Единица температуры",
     "celsius": "Цельсий (°C)",
     "fahrenheit": "Фаренгейт (°F)",
-    "breezyWeatherSetupHint": "Установите Breezy Weather и включите 'Локальный обмен данными' / 'Gadgetbridge' в его настройках для отображения погоды и предупреждений."
+    "breezyWeatherSetupHint": "Установите Breezy Weather и включите 'Локальный обмен данными' / 'Gadgetbridge' в его настройках для отображения погоды и предупреждений.",
+    "more": "Ещё"
 }

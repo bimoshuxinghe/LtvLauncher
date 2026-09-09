@@ -53,7 +53,8 @@ class LauncherSection
 
 class Category extends LauncherSection
 {
-  static const int          ColumnsCount  = 6;
+  // 艾蒙顿桌面一行 5 张卡片（1920 基准：320×180，间距 40）
+  static const int          ColumnsCount  = 5;
   static const int          RowHeight     = 110;
   static const CategorySort Sort          = CategorySort.manual;
   static const CategoryType Type          = CategoryType.row;

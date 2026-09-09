@@ -20,30 +20,9 @@ class ContinueWatchingRow extends StatelessWidget {
 
     return Consumer2<WatchNextService, AppsService>(
       builder: (context, watchNextService, appsService, _) {
+        // 未授予「继续观看」权限时不显示任何提示，直接隐藏该区域
         if (!watchNextService.hasPermission) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.15),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.redAccent.withOpacity(0.4)),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.warning_amber_rounded, color: Colors.redAccent, size: 20),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      '${AppLocalizations.of(context)!.continueWatchingAdbHint} adb shell pm grant com.leanbitlab.ltvL com.android.providers.tv.permission.READ_WRITE_WATCH_NEXT_PROGRAMS',
-                      style: const TextStyle(color: Colors.white70, fontSize: 12),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
+          return const SizedBox.shrink();
         }
 
         final List<WatchNextProgram> programs = watchNextService.programs
