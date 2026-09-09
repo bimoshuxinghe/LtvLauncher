@@ -34,7 +34,9 @@ jobs:
 
       - name: Install SQLite
         run: |
-          sudo apt-get update
+          # 某些 runner 镜像的第三方 apt 源（如 dl.google.com chrome）会偶发哈希校验失败，
+          # 用 || true 让 update 不致命，继续用缓存的包列表安装 sqlite3（drift_dev 必需）
+          sudo apt-get update || true
           sudo apt-get install -y sqlite3 libsqlite3-dev
 
       - name: Set up Flutter
